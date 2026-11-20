@@ -8,6 +8,7 @@ __pycache__/
 # Test & scratch caches
 .pytest_cache/
 .superpowers/
+docs/superpowers/
 
 # Live streaming runtime scratch folders
 outputs/live_stream_in/
