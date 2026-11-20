@@ -1,0 +1,6 @@
+mode,window_s,mean_latency_s,median_latency_s,pct_decided_before_deadline,effective_recall,tp_on_time,total_actual_abandoned
+Batch Harian (24 Jam),86400,37343.6235,26765.0,3.597,0.0176,113,6427
+Batch Per Jam (1 Jam),3600,1792.3429,1788.0,60.4667,0.3909,2512,6427
+Micro-Batch (5 Menit),300,150.2142,149.0,100.0,0.7095,4560,6427
+Near Real-Time (1 Menit),60,30.5147,30.0,100.0,0.7095,4560,6427
+Near Real-Time (10 Detik),10,5.5187,5.0,100.0,0.7095,4560,6427

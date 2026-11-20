@@ -1,0 +1,23 @@
+# Virtual environments & Python bytecode
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Test & scratch caches
+.pytest_cache/
+.superpowers/
+
+# Live streaming runtime scratch folders
+outputs/live_stream_in/
+outputs/live_stream_tmp/
+outputs/stream_in/
+outputs/stream_tmp/
+
+# OS & Office lock files
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*.docx
+~$*.pptx

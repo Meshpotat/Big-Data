@@ -1,0 +1,396 @@
+{
+  "hardware": {
+    "cpu_name": "12th Gen Intel(R) Core(TM) i5-12450HX",
+    "physical_cores": 8,
+    "logical_threads": 12,
+    "ram_gb": 11.78,
+    "os": "Windows 10 (10.0.26300)",
+    "python_version": "3.11.9",
+    "pandas_version": "3.1.1",
+    "numpy_version": "2.4.6",
+    "sklearn_version": "1.9.1",
+    "matplotlib_version": "3.11.2"
+  },
+  "dataset": {
+    "total_events": 2756101,
+    "event_counts": {
+      "view": 2664312,
+      "addtocart": 69332,
+      "transaction": 22457
+    },
+    "unique_visitors": 1407580,
+    "unique_items_in_events": 235061,
+    "total_item_property_rows": 20275902,
+    "unique_items_in_properties": 417053,
+    "category_tree_rows": 1669,
+    "min_datetime_utc": "2015-05-03 03:00:04 UTC",
+    "max_datetime_utc": "2015-09-18 02:59:47 UTC",
+    "total_all_sessions": 1761660,
+    "total_cart_sessions": 43924,
+    "abandoned_count": 31992,
+    "completed_count": 11932,
+    "abandoned_rate_pct": 72.83,
+    "completed_rate_pct": 27.17,
+    "train_sessions": 35139,
+    "test_sessions": 8785,
+    "train_abandoned_rate_pct": 72.75,
+    "test_abandoned_rate_pct": 73.16,
+    "train_price_median": 59268.0,
+    "price_missing_rate_pct": 1.18,
+    "category_missing_rate_pct": 1.18,
+    "strict_prev_sessions_differed_rows": 0,
+    "session_remaining_sec_median": 85.0,
+    "session_remaining_sec_mean": 551.72
+  },
+  "models": [
+    {
+      "model": "Random Forest",
+      "precision": 0.8175,
+      "recall": 0.7095,
+      "f1": 0.7597,
+      "roc_auc": 0.703,
+      "pr_auc": 0.8574,
+      "balanced_acc": 0.6389,
+      "train_s": 1.0011,
+      "infer_ms_per_row": 0.006635,
+      "tp": 4560,
+      "fp": 1018,
+      "tn": 1340,
+      "fn": 1867
+    },
+    {
+      "model": "Logistic Regression",
+      "precision": 0.8036,
+      "recall": 0.7487,
+      "f1": 0.7752,
+      "roc_auc": 0.6829,
+      "pr_auc": 0.842,
+      "balanced_acc": 0.625,
+      "train_s": 0.0479,
+      "infer_ms_per_row": 0.000228,
+      "tp": 4812,
+      "fp": 1176,
+      "tn": 1182,
+      "fn": 1615
+    }
+  ],
+  "threshold_sensitivity": [
+    {
+      "model": "Random Forest",
+      "threshold": 0.3,
+      "precision": 0.7551,
+      "recall": 0.9818,
+      "f1": 0.8536,
+      "balanced_acc": 0.5568
+    },
+    {
+      "model": "Random Forest",
+      "threshold": 0.4,
+      "precision": 0.7751,
+      "recall": 0.9136,
+      "f1": 0.8387,
+      "balanced_acc": 0.5955
+    },
+    {
+      "model": "Random Forest",
+      "threshold": 0.5,
+      "precision": 0.8175,
+      "recall": 0.7095,
+      "f1": 0.7597,
+      "balanced_acc": 0.6389
+    },
+    {
+      "model": "Random Forest",
+      "threshold": 0.6,
+      "precision": 0.8771,
+      "recall": 0.4176,
+      "f1": 0.5658,
+      "balanced_acc": 0.6291
+    },
+    {
+      "model": "Random Forest",
+      "threshold": 0.7,
+      "precision": 0.9055,
+      "recall": 0.2533,
+      "f1": 0.3959,
+      "balanced_acc": 0.5906
+    },
+    {
+      "model": "Logistic Regression",
+      "threshold": 0.3,
+      "precision": 0.7584,
+      "recall": 0.9687,
+      "f1": 0.8508,
+      "balanced_acc": 0.5639
+    },
+    {
+      "model": "Logistic Regression",
+      "threshold": 0.4,
+      "precision": 0.7694,
+      "recall": 0.9225,
+      "f1": 0.839,
+      "balanced_acc": 0.5845
+    },
+    {
+      "model": "Logistic Regression",
+      "threshold": 0.5,
+      "precision": 0.8036,
+      "recall": 0.7487,
+      "f1": 0.7752,
+      "balanced_acc": 0.625
+    },
+    {
+      "model": "Logistic Regression",
+      "threshold": 0.6,
+      "precision": 0.869,
+      "recall": 0.2983,
+      "f1": 0.4441,
+      "balanced_acc": 0.5879
+    },
+    {
+      "model": "Logistic Regression",
+      "threshold": 0.7,
+      "precision": 0.9369,
+      "recall": 0.03,
+      "f1": 0.0582,
+      "balanced_acc": 0.5123
+    }
+  ],
+  "feature_importance": {
+    "prev_sessions": 0.1995,
+    "elapsed_min": 0.16,
+    "price_log": 0.1515,
+    "cat_freq": 0.1277,
+    "hour": 0.1016,
+    "n_views_same_item": 0.0811,
+    "dow": 0.0593,
+    "n_events_before": 0.0435,
+    "n_unique_items": 0.0397,
+    "n_views_before": 0.036
+  },
+  "feature_descriptive_stats": {
+    "n_events_before": {
+      "mean": 3.0035,
+      "std": 3.8633,
+      "min": 1.0,
+      "50%": 2.0,
+      "max": 283.0
+    },
+    "n_views_before": {
+      "mean": 1.9978,
+      "std": 3.8586,
+      "min": 0.0,
+      "50%": 1.0,
+      "max": 282.0
+    },
+    "n_unique_items": {
+      "mean": 1.8323,
+      "std": 2.8323,
+      "min": 1.0,
+      "50%": 1.0,
+      "max": 191.0
+    },
+    "n_views_same_item": {
+      "mean": 0.9862,
+      "std": 0.8789,
+      "min": 0.0,
+      "50%": 1.0,
+      "max": 22.0
+    },
+    "elapsed_min": {
+      "mean": 5.5148,
+      "std": 12.7979,
+      "min": 0.0,
+      "50%": 1.2833,
+      "max": 555.5167
+    },
+    "hour": {
+      "mean": 13.0779,
+      "std": 7.8124,
+      "min": 0.0,
+      "50%": 16.0,
+      "max": 23.0
+    },
+    "dow": {
+      "mean": 2.6827,
+      "std": 1.9377,
+      "min": 0.0,
+      "50%": 3.0,
+      "max": 6.0
+    },
+    "price_log": {
+      "mean": 11.0762,
+      "std": 1.2293,
+      "min": 7.0909,
+      "50%": 10.9981,
+      "max": 15.5239
+    },
+    "cat_freq": {
+      "mean": 249.5221,
+      "std": 272.612,
+      "min": 0.0,
+      "50%": 152.0,
+      "max": 970.0
+    },
+    "prev_sessions": {
+      "mean": 4.165,
+      "std": 21.7787,
+      "min": 0.0,
+      "50%": 0.0,
+      "max": 421.0
+    },
+    "abandoned": {
+      "mean": 0.7283,
+      "std": 0.4448,
+      "min": 0.0,
+      "50%": 1.0,
+      "max": 1.0
+    }
+  },
+  "feature_class_means": {
+    "n_events_before": {
+      "completed_mean": 3.7596,
+      "abandoned_mean": 2.7215
+    },
+    "n_views_before": {
+      "completed_mean": 2.7386,
+      "abandoned_mean": 1.7215
+    },
+    "n_unique_items": {
+      "completed_mean": 2.271,
+      "abandoned_mean": 1.6686
+    },
+    "n_views_same_item": {
+      "completed_mean": 1.1796,
+      "abandoned_mean": 0.914
+    },
+    "elapsed_min": {
+      "completed_mean": 8.8926,
+      "abandoned_mean": 4.255
+    },
+    "hour": {
+      "completed_mean": 13.7849,
+      "abandoned_mean": 12.8142
+    },
+    "dow": {
+      "completed_mean": 2.5246,
+      "abandoned_mean": 2.7416
+    },
+    "price_log": {
+      "completed_mean": 11.0364,
+      "abandoned_mean": 11.091
+    },
+    "cat_freq": {
+      "completed_mean": 221.2675,
+      "abandoned_mean": 260.0601
+    },
+    "prev_sessions": {
+      "completed_mean": 9.4421,
+      "abandoned_mean": 2.1968
+    }
+  },
+  "temporal_patterns": {
+    "by_hour_pct": {
+      "0": 74.57,
+      "1": 74.84,
+      "2": 73.43,
+      "3": 76.88,
+      "4": 78.95,
+      "5": 76.46,
+      "6": 78.53,
+      "7": 78.19,
+      "8": 83.78,
+      "9": 85.84,
+      "10": 82.79,
+      "11": 84.34,
+      "12": 85.09,
+      "13": 81.63,
+      "14": 79.02,
+      "15": 64.73,
+      "16": 67.89,
+      "17": 68.1,
+      "18": 69.22,
+      "19": 69.24,
+      "20": 71.06,
+      "21": 70.43,
+      "22": 72.36,
+      "23": 73.43
+    },
+    "by_dow_pct": {
+      "0": 71.05,
+      "1": 71.07,
+      "2": 69.88,
+      "3": 73.01,
+      "4": 74.1,
+      "5": 77.39,
+      "6": 76.55
+    }
+  },
+  "latency_simulation": [
+    {
+      "mode": "Batch Harian (24 Jam)",
+      "window_s": 86400,
+      "mean_latency_s": 37343.6235,
+      "median_latency_s": 26765.0,
+      "pct_decided_before_deadline": 3.597,
+      "effective_recall": 0.0176,
+      "tp_on_time": 113,
+      "total_actual_abandoned": 6427
+    },
+    {
+      "mode": "Batch Per Jam (1 Jam)",
+      "window_s": 3600,
+      "mean_latency_s": 1792.3429,
+      "median_latency_s": 1788.0,
+      "pct_decided_before_deadline": 60.4667,
+      "effective_recall": 0.3909,
+      "tp_on_time": 2512,
+      "total_actual_abandoned": 6427
+    },
+    {
+      "mode": "Micro-Batch (5 Menit)",
+      "window_s": 300,
+      "mean_latency_s": 150.2142,
+      "median_latency_s": 149.0,
+      "pct_decided_before_deadline": 100.0,
+      "effective_recall": 0.7095,
+      "tp_on_time": 4560,
+      "total_actual_abandoned": 6427
+    },
+    {
+      "mode": "Near Real-Time (1 Menit)",
+      "window_s": 60,
+      "mean_latency_s": 30.5147,
+      "median_latency_s": 30.0,
+      "pct_decided_before_deadline": 100.0,
+      "effective_recall": 0.7095,
+      "tp_on_time": 4560,
+      "total_actual_abandoned": 6427
+    },
+    {
+      "mode": "Near Real-Time (10 Detik)",
+      "window_s": 10,
+      "mean_latency_s": 5.5187,
+      "median_latency_s": 5.0,
+      "pct_decided_before_deadline": 100.0,
+      "effective_recall": 0.7095,
+      "tp_on_time": 4560,
+      "total_actual_abandoned": 6427
+    }
+  ],
+  "streaming_benchmark": {
+    "engine_used": "Python Native Micro-Batch Streaming Runner (2s Trigger, Atomic File Rename)",
+    "fallback_reason": "No module named 'pyspark'",
+    "total_streamed_rows": 1000,
+    "num_micro_batches": 7,
+    "mean_latency_s": 1.2735,
+    "std_latency_s": 0.6053,
+    "min_latency_s": 0.498,
+    "p25_latency_s": 0.5571,
+    "median_latency_s": 1.2596,
+    "p75_latency_s": 2.0006,
+    "max_latency_s": 2.0766,
+    "mean_batch_infer_ms": 28.9815
+  },
+  "total_pipeline_runtime_s": 53.0
+}

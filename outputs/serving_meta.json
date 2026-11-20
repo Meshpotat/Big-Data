@@ -1,0 +1,22 @@
+{
+  "features": [
+    "n_events_before",
+    "n_views_before",
+    "n_unique_items",
+    "n_views_same_item",
+    "elapsed_min",
+    "hour",
+    "dow",
+    "price_log",
+    "cat_freq",
+    "prev_sessions"
+  ],
+  "train_price_median": 59268.0,
+  "cat_freq_median": 152,
+  "cat_freq_max": 970,
+  "test_pool_rows": 8785,
+  "models": [
+    "Random Forest",
+    "Logistic Regression"
+  ]
+}
