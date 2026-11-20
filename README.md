@@ -89,10 +89,6 @@ pytest tests/test_pipeline_core.py -v
 │   ├── serving_meta.json
 │   ├── metrics_summary.json
 │   └── figures/                 # Grafik publikasi 300 DPI & arsitektur
-├── Draft_Jurnal_INISTA_Kelompok_15.md
-├── Jurnal_JICT_INISTA_Kelompok_15.docx
-├── Laporan_Akhir_Proyek_Teknologi_Big_Data_Kelompok_15.docx
-├── Presentasi_Big_Data_Kelompok_15.pptx
 └── WS4_Rancangan_Teknis_dan_Implementasi_Kelompok_15.md
 ```
 
