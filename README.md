@@ -69,7 +69,6 @@ pytest tests/test_pipeline_core.py -v
 ```text
 ├── dashboard.py                 # Aplikasi Streamlit live dual-model (RF vs. LR)
 ├── dashboard.html               # Dashboard web statis standalone (cadangan presentasi)
-├── Project_Big_Data_Kelompok_15.ipynb
 ├── requirements.txt             # Dependensi runtime dashboard & pipeline
 ├── requirements-dev.txt         # Dependensi pengujian & generator dokumen
 ├── src/
@@ -92,13 +91,3 @@ pytest tests/test_pipeline_core.py -v
 └── WS4_Rancangan_Teknis_dan_Implementasi_Kelompok_15.md
 ```
 
----
-
-## Push ke GitHub
-
-Setelah membuat repository kosong baru di GitHub, hubungkan dan push branch `main`:
-
-```bash
-git remote add origin https://github.com/<username>/<nama-repo>.git
-git push -u origin main
-```
