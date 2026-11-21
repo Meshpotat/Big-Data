@@ -319,10 +319,10 @@ with st.sidebar:
     )
 
     st.divider()
-    st.markdown("#### Hardware Baseline")
+    st.markdown("#### Runtime & Hardware Baseline")
     st.caption(
-        f"**CPU:** {hw['cpu_name']} ({hw['physical_cores']}C/{hw['logical_threads']}T)\n\n"
-        f"**RAM:** {hw['ram_gb']} GB | **Python:** {hw['python_version']}\n\n"
+        "**Spark Engine:** Google Colab (Apache Spark 4.0.5, `local[*]`, 4 GB Driver)\n\n"
+        f"**Serving Host:** {hw['cpu_name']} ({hw['physical_cores']}C/{hw['logical_threads']}T, {hw['ram_gb']} GB)\n\n"
         f"**Test Stream Pool:** {len(test_pool):,} real sessions"
     )
 
@@ -330,7 +330,7 @@ with st.sidebar:
 st.title("Real-Time Cart Abandonment Telemetry: Random Forest vs. Logistic Regression")
 st.caption(
     f"Serving Layer (Streamlit) · 6-Layer E-Commerce Lambda Architecture (WS2) · "
-    f"Retailrocket Clickstream ({ds['min_datetime_utc']} to {ds['max_datetime_utc']}) · "
+    f"Apache Spark 4.0.5 (Google Colab) · Retailrocket ({ds['min_datetime_utc']} to {ds['max_datetime_utc']}) · "
     f"Threshold τ = {selected_thresh:.2f}"
 )
 
@@ -338,7 +338,7 @@ k1, k2, k3, k4, k5, k6 = st.columns(6)
 k1.metric("Total Events", f"{ds['total_events']:,}", f"{ds['total_all_sessions']:,} sessions")
 k2.metric("Cart Sessions", f"{ds['total_cart_sessions']:,}", f"Test Pool: {len(test_pool):,}")
 k3.metric("Abandonment Rate", f"{ds['abandoned_rate_pct']}%", f"{ds['abandoned_count']:,} abandoned")
-k4.metric("RF PR-AUC", "0.8574", "vs. 0.8420 LR (+1.54%)")
+k4.metric("RF PR-AUC", "0.8560", "vs. 0.8420 LR (+1.40%)")
 k5.metric("Median Remaining", f"{ds['session_remaining_sec_median']} s", "After 1st addtocart")
 win_row = sim_df[sim_df["mode"] == selected_window].iloc[0]
 k6.metric(
@@ -588,7 +588,7 @@ with tab_compare:
     render_model_benchmark_half(
         bm_col_rf,
         "Random Forest (Primary)",
-        "Higher PR-AUC (0.8574), ROC-AUC (0.7030), Balanced Acc (0.6389), and Precision (0.8175)",
+        "Higher PR-AUC (0.8560), ROC-AUC (0.7004), F1 (0.7767), Precision (0.8083), & Peak Bal Acc (0.6343 at τ=0.60)",
         rf_row,
         rf_th,
         selected_thresh,
@@ -596,7 +596,7 @@ with tab_compare:
     render_model_benchmark_half(
         bm_col_lr,
         "Logistic Regression (Baseline)",
-        "Faster training (0.0479s) & inference (0.000228 ms/row), higher Recall at τ=0.50 (0.7487)",
+        "Faster training (0.1135s) & inference (0.0005 ms/row); probability compression at τ ≥ 0.60 (Recall drops to 29.83% -> 3.00%)",
         lr_row,
         lr_th,
         selected_thresh,
@@ -608,7 +608,8 @@ with tab_compare:
     with col_l:
         st.markdown(
             "Comparison of 5 processing windows under intervention deadline "
-            "$t_{\\text{deadline}} = t_{\\text{end}} + 1800\\text{ s}$:"
+            "$t_{\\text{deadline}} = t_{\\text{end}} + 1800\\text{ s}$ "
+            "(Micro-Batch/NRT achieves **37.8×** Effective Recall over Daily Batch):"
         )
         st.dataframe(
             sim_df[
@@ -630,9 +631,9 @@ with tab_compare:
         if os.path.exists(fig3_path):
             st.image(fig3_path, caption="Fig. 3. Effective Recall vs. Architectural Window Size")
         st.metric(
-            "Offline 1,000-Row Stream Benchmark",
+            "PySpark 4.0.5 Stream Benchmark (1,000 Rows)",
             f"{stream_bm['mean_latency_s']} s mean",
-            f"Median: {stream_bm['median_latency_s']} s",
+            f"Med: {stream_bm['median_latency_s']}s (Q1: {stream_bm['p25_latency_s']}s · Q3: {stream_bm['p75_latency_s']}s · Max: {stream_bm['max_latency_s']}s)",
         )
 
 # --- TAB 4: FEATURE DRIVERS & TEMPORAL ---
@@ -715,13 +716,13 @@ with tab_ws2:
             {
                 "Layer": "4. Processing (Lambda)",
                 "WS2 Production Blueprint": "Batch Layer: Apache Spark (historical aggregations & training) | Speed Layer: Spark Structured Streaming (near real-time)",
-                "Prototype Implementation (Kelompok 15)": "PySpark DataFrame/Window (GAP 30m, 10 anti-leakage features, 80:20 split) & Structured Streaming (foreachBatch 2s Colab; Python fallback Windows)",
+                "Prototype Implementation (Kelompok 15)": "PySpark 4.0.5 DataFrame/Window (GAP 30m, 10 anti-leakage features, 80:20 split) & Structured Streaming (foreachBatch 2s Colab, mean 1.93s)",
                 "Status": "Active Prototype (Batch + Speed Layer)",
             },
             {
                 "Layer": "5. Analytics Layer",
                 "WS2 Production Blueprint": "Spark SQL / Trino (ad-hoc & BI analytics) + Machine Learning (fraud, recommendation, cart abandonment, segmentation)",
-                "Prototype Implementation (Kelompok 15)": "Temporal & behavioral EDA + Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall simulation",
+                "Prototype Implementation (Kelompok 15)": "Temporal & behavioral EDA + Random Forest (PR-AUC 0.8560, ROC-AUC 0.7004) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall (37.8x)",
                 "Status": "Active Prototype (Goal #3 Cart Abandonment)",
             },
             {
@@ -743,32 +744,37 @@ with tab_ws2:
     col_ws_l, col_ws_r = st.columns(2, gap="medium")
     with col_ws_l:
         with st.container(border=True):
-            st.markdown("#### Data Variety & Big Data Scale Justification (WS2 §1.1–1.3)")
+            st.markdown("#### Big Data 5Vs Assessment & Scale Justification (WS2 §1.1–1.3)")
             scale_df = pd.DataFrame(
                 [
                     {
-                        "Dimension": "Structured",
-                        "Prototype (Retailrocket)": "22,457 transactions (transactionid in events.csv)",
-                        "Production Target (WS2)": "50,000–200,000 OLTP orders/day + payment records",
+                        "5Vs Dimension": "1. Volume",
+                        "Prototype (Retailrocket)": "23.03M total rows (2.75M events + 20.28M item props; 2M/chunk scan)",
+                        "Production Target (WS2)": "500k–2M events/day, 50k–200k orders/day, tens–hundreds GB/month",
                     },
                     {
-                        "Dimension": "Semi-Structured",
-                        "Prototype (Retailrocket)": "2.75M clickstream events (~20k/day) + 20.27M item properties",
-                        "Production Target (WS2)": "500,000–2,000,000 JSON events/day + catalog API",
+                        "5Vs Dimension": "2. Velocity",
+                        "Prototype (Retailrocket)": "~20k events/day · 85.0s median post-cart window · 1.93s PySpark stream",
+                        "Production Target (WS2)": "Sub-second to second-scale streaming under flash-sale spikes",
                     },
                     {
-                        "Dimension": "Unstructured",
-                        "Prototype (Retailrocket)": "Not in Retailrocket CSV (Production Blueprint)",
-                        "Production Target (WS2)": "Product reviews, customer feedback text, & images",
+                        "5Vs Dimension": "3. Variety",
+                        "Prototype (Retailrocket)": "Structured (22,457 tx) + Semi-Structured (clickstream & key-value props)",
+                        "Production Target (WS2)": "Adds Unstructured product reviews, customer text, & catalog images",
                     },
                     {
-                        "Dimension": "Storage & Velocity",
-                        "Prototype (Retailrocket)": "23.03M rows (4.5 mos) · 2s micro-batch stream",
-                        "Production Target (WS2)": "Tens–hundreds GB/month raw lake · flash-sale spikes",
+                        "5Vs Dimension": "4. Veracity",
+                        "Prototype (Retailrocket)": "No native session_id, 'n'-prefixed price strings, 1.18% missing, 72.83% skew",
+                        "Production Target (WS2)": "Automated schema validation, point-in-time joins, & drift checks",
+                    },
+                    {
+                        "5Vs Dimension": "5. Value",
+                        "Prototype (Retailrocket)": "Effective Recall 0.7475 (37.8x vs Daily Batch) + tiered τ CRM actions",
+                        "Production Target (WS2)": "Live margin-aware voucher orchestration & online A/B uplift testing",
                     },
                 ]
             )
-            st.table(scale_df.set_index("Dimension"))
+            st.table(scale_df.set_index("5Vs Dimension"))
 
     with col_ws_r:
         with st.container(border=True):

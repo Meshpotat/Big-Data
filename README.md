@@ -27,17 +27,18 @@ Dashboard berperan sebagai **Visualization / Serving Layer (Streamlit)** dalam r
 
 ---
 
-## Ringkasan Hasil Eksperimen (Retailrocket Dataset)
+## Ringkasan Hasil Eksperimen (Retailrocket Dataset — Google Colab Apache Spark 4.0.5)
 
 - **Dataset & Sesi:** `2,756,101` events & `20,275,902` baris properti item $\rightarrow$ `1,761,660` sesi total (GAP 30 menit) $\rightarrow$ `43,924` sesi keranjang (`72.83%` *abandoned* vs. `27.17%` *completed*).
 - **Pembagian Kronologis (80:20 berdasarkan `cart_ts`):** `35,139` sesi *Train* dan `8,785` sesi *Test*.
 - **Performa Model ($\tau = 0.50$):**
-  - **Random Forest:** Precision `0.8175`, Recall `0.7095`, F1 `0.7597`, ROC-AUC `0.7030`, **PR-AUC `0.8574`**, Balanced Acc `0.6389`.
+  - **Random Forest:** Precision `0.8083`, Recall `0.7475`, F1 `0.7767`, ROC-AUC `0.7004`, **PR-AUC `0.8560`**, Balanced Acc `0.6322` (Peak Balanced Acc `0.6343` pada $\tau = 0.60$).
   - **Logistic Regression:** Precision `0.8036`, Recall `0.7487`, F1 `0.7752`, ROC-AUC `0.6829`, PR-AUC `0.8420`, Balanced Acc `0.6250`.
 - **Simulasi Effective Recall (Batas Waktu = $t_{\text{end}} + 1800\text{ s}$):**
-  - Batch Harian (86.400s): `0.0176` (`3.60%` tepat waktu)
-  - Batch Per Jam (3.600s): `0.3909` (`60.47%` tepat waktu)
-  - Micro-Batch (300s) / Near Real-Time (60s, 10s): `0.7095` (`100.00%` tepat waktu)
+  - Batch Harian (86.400s): `0.0198` (`3.60%` tepat waktu, `127 / 6,427` TP)
+  - Batch Per Jam (3.600s): `0.4129` (`60.47%` tepat waktu, `2,654 / 6,427` TP)
+  - Micro-Batch (300s) / Near Real-Time (60s, 10s): `0.7475` (`100.00%` tepat waktu, `4,804 / 6,427` TP — **37,8×** dibanding Batch Harian)
+- **PySpark Structured Streaming Benchmark (Trigger 2 Detik, 1.000 Sesi):** Mean `1.9262 s` (`1.93 s`), Median `2.0410 s`, Q1 `1.2318 s`, Q3 `2.4356 s`, Max `3.0805 s`.
 
 ---
 

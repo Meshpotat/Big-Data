@@ -131,7 +131,7 @@ print(f"Spark Version         : {spark.version}")
 print(f"Path to dataset files : {DATA_DIR}")
 print(f"Daftar file dataset   : {os.listdir(DATA_DIR)}")
 print(f"Session GAP           : {GAP} detik (30 menit)")""",
-            """Spark Version         : 3.5.3
+            """Spark Version         : 4.0.5
 Path to dataset files : /root/.cache/kagglehub/datasets/retailrocket/ecommerce-dataset/versions/2
 Daftar file dataset   : ['category_tree.csv', 'events.csv', 'item_properties_part1.csv', 'item_properties_part2.csv']
 Session GAP           : 1800 detik (30 menit)""",
@@ -272,10 +272,14 @@ data["dow"] = dt.dt.day_of_week
 data["elapsed_min"] = (data["cart_ts"] - data["start_ts"]) / 60.0
 
 # 6. Pembagian Kronologis 80:20 berdasarkan cart_ts & Imputasi Bebas Leakage
+price_missing_pct = data["price"].isna().mean() * 100.0
+cat_missing_pct   = data["categoryid"].isna().mean() * 100.0
+
 data = data.sort_values("cart_ts").reset_index(drop=True)
 split_idx = int(len(data) * 0.8)
 train, test = data.iloc[:split_idx].copy(), data.iloc[split_idx:].copy()
 
+rem_sec = test["end_ts"] - test["cart_ts"]
 train_price_median = train["price"].median()
 for df_part in (train, test):
     df_part["price"] = df_part["price"].fillna(train_price_median)
@@ -297,9 +301,13 @@ comp_summary = pd.DataFrame({
     "Mean_Abandoned (1)": full_df[full_df["abandoned"] == 1][FEATURES].mean().round(4),
 })
 print(f"Train sessions: {len(train):,} | Test sessions: {len(test):,} | Median Price (Train): {train_price_median}")
+print(f"Missing Attribute Rate -> price: {price_missing_pct:.2f}% | categoryid: {cat_missing_pct:.2f}%")
+print(f"Remaining Session Duration After 1st Add-to-Cart (Test) -> Median: {rem_sec.median():.1f} s | Mean: {rem_sec.mean():.2f} s")
 print("\\nPerbandingan Rata-Rata Fitur per Kelas:")
 print(comp_summary)""",
             """Train sessions: 35,139 | Test sessions: 8,785 | Median Price (Train): 59268.0
+Missing Attribute Rate -> price: 1.18% | categoryid: 1.18%
+Remaining Session Duration After 1st Add-to-Cart (Test) -> Median: 85.0 s | Mean: 551.72 s
 
 Perbandingan Rata-Rata Fitur per Kelas:
                    Mean_Completed (0)  Mean_Abandoned (1)
@@ -370,16 +378,16 @@ print("\\n=== GINI FEATURE IMPORTANCE (RANDOM FOREST) ===")
 print(imp.sort_values(ascending=False).round(4))""",
             """=== PERBANDINGAN MODEL KLASIFIKASI (THRESHOLD = 0.50) ===
               model  precision  recall     f1  roc_auc  pr_auc  balanced_acc  train_s  infer_ms_per_row
-      Random Forest     0.8175  0.7095 0.7597   0.7030  0.8574        0.6389   1.0011            0.0066
-Logistic Regression     0.8036  0.7487 0.7752   0.6829  0.8420        0.6250   0.0479            0.0002
+      Random Forest     0.8083  0.7475 0.7767   0.7004  0.8560        0.6322   7.4538            0.0208
+Logistic Regression     0.8036  0.7487 0.7752   0.6829  0.8420        0.6250   0.1135            0.0005
 
 === ANALISIS SENSITIVITAS THRESHOLD PROBABILITAS ===
               model  threshold  precision  recall     f1  balanced_acc
-      Random Forest        0.3     0.7551  0.9818 0.8536        0.5568
-      Random Forest        0.4     0.7751  0.9136 0.8387        0.5955
-      Random Forest        0.5     0.8175  0.7095 0.7597        0.6389
-      Random Forest        0.6     0.8771  0.4176 0.5658        0.6291
-      Random Forest        0.7     0.9055  0.2533 0.3959        0.5906
+      Random Forest        0.3     0.7504  0.9863 0.8524        0.5462
+      Random Forest        0.4     0.7666  0.9389 0.8440        0.5799
+      Random Forest        0.5     0.8083  0.7475 0.7767        0.6322
+      Random Forest        0.6     0.8669  0.4620 0.6027        0.6343
+      Random Forest        0.7     0.8980  0.2835 0.4309        0.5979
 Logistic Regression        0.3     0.7584  0.9687 0.8508        0.5639
 Logistic Regression        0.4     0.7694  0.9225 0.8390        0.5845
 Logistic Regression        0.5     0.8036  0.7487 0.7752        0.6250
@@ -387,16 +395,16 @@ Logistic Regression        0.6     0.8690  0.2983 0.4441        0.5879
 Logistic Regression        0.7     0.9369  0.0300 0.0582        0.5123
 
 === GINI FEATURE IMPORTANCE (RANDOM FOREST) ===
-prev_sessions        0.1995
-elapsed_min          0.1600
-price_log            0.1515
-cat_freq             0.1277
-hour                 0.1016
-n_views_same_item    0.0811
-dow                  0.0593
-n_events_before      0.0435
-n_unique_items       0.0397
-n_views_before       0.0360
+prev_sessions        0.1926
+elapsed_min          0.1617
+price_log            0.1550
+cat_freq             0.1297
+hour                 0.1024
+n_views_same_item    0.0795
+dow                  0.0615
+n_events_before      0.0421
+n_unique_items       0.0396
+n_views_before       0.0359
 dtype: float64""",
             img_b64=b64_fig1,
             exec_count=5,
@@ -408,6 +416,7 @@ by_dow  = (full_df.groupby("dow")["abandoned"].mean() * 100).round(2)
 
 print("Abandonment Rate tertinggi per Jam (UTC):")
 print(by_hour.sort_values(ascending=False).head(5))
+print("\\nDistribusi Lengkap 24 Jam (UTC):", by_hour.to_dict())
 print("\\nAbandonment Rate per Hari (0=Senin s.d. 6=Minggu):")
 print(by_dow)""",
             """Abandonment Rate tertinggi per Jam (UTC):
@@ -418,6 +427,8 @@ hour
 8     83.78
 10    82.79
 Name: abandoned, dtype: float64
+
+Distribusi Lengkap 24 Jam (UTC): {0: 74.57, 1: 74.84, 2: 73.43, 3: 76.88, 4: 78.95, 5: 76.46, 6: 78.53, 7: 78.19, 8: 83.78, 9: 85.84, 10: 82.79, 11: 84.34, 12: 85.09, 13: 81.63, 14: 79.02, 15: 64.73, 16: 67.89, 17: 68.1, 18: 69.22, 19: 69.24, 20: 71.06, 21: 70.43, 22: 72.36, 23: 73.43}
 
 Abandonment Rate per Hari (0=Senin s.d. 6=Minggu):
 dow
@@ -468,11 +479,11 @@ sim = pd.DataFrame([
 ]).round(4)
 print(sim.to_string(index=False))""",
             """                     mode  window_s  mean_latency_s  median_latency_s  pct_decided_before_deadline  tp_on_time  effective_recall
-    Batch Harian (24 Jam)     86400      37343.6235           26765.0                       3.5970         113            0.0176
-    Batch Per Jam (1 Jam)      3600       1792.3429            1788.0                      60.4667        2512            0.3909
-    Micro-Batch (5 Menit)       300        150.2142             149.0                     100.0000        4560            0.7095
- Near Real-Time (1 Menit)        60         30.5147              30.0                     100.0000        4560            0.7095
-Near Real-Time (10 Detik)        10          5.5187               5.0                     100.0000        4560            0.7095""",
+    Batch Harian (24 Jam)     86400      37343.6235           26765.0                       3.5970         127            0.0198
+    Batch Per Jam (1 Jam)      3600       1792.3429            1788.0                      60.4667        2654            0.4129
+    Micro-Batch (5 Menit)       300        150.2142             149.0                     100.0000        4804            0.7475
+ Near Real-Time (1 Menit)        60         30.5147              30.0                     100.0000        4804            0.7475
+Near Real-Time (10 Detik)        10          5.5187               5.0                     100.0000        4804            0.7475""",
             img_b64=b64_fig3,
             exec_count=7,
         ),
@@ -491,7 +502,7 @@ schema = StructType([StructField(c, DoubleType()) for c in FEATURES + ["write_ts
 lat_log = []
 
 def process_batch(df, batch_id):
-    if df.rdd.isEmpty():
+    if df.isEmpty():
         return
     pdf = df.toPandas()
     proba = rf.predict_proba(pdf[FEATURES])[:, 1]
@@ -535,13 +546,13 @@ print("=== DISTRIBUSI LATENSI END-TO-END PYSPARK STRUCTURED STREAMING ===")
 print(stream_lat["latency_s"].describe().round(4))""",
             """=== DISTRIBUSI LATENSI END-TO-END PYSPARK STRUCTURED STREAMING ===
 count    1000.0000
-mean        1.2735
-std         0.6053
-min         0.4980
-25%         0.5571
-50%         1.2596
-75%         2.0006
-max         2.0766
+mean        1.9262
+std         0.6797
+min         0.8595
+25%         1.2318
+50%         2.0410
+75%         2.4356
+max         3.0805
 Name: latency_s, dtype: float64""",
             exec_count=8,
         ),

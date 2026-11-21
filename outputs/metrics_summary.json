@@ -9,7 +9,9 @@
     "pandas_version": "3.1.1",
     "numpy_version": "2.4.6",
     "sklearn_version": "1.9.1",
-    "matplotlib_version": "3.11.2"
+    "matplotlib_version": "3.11.2",
+    "runtime_env": "Google Colab Linux Runtime (Apache Spark 4.0.5, local[*], 4 GB Driver RAM) + Local Serving Node (Intel Core i5-12450HX, 11.78 GB RAM)",
+    "spark_version": "4.0.5"
   },
   "dataset": {
     "total_events": 2756101,
@@ -45,18 +47,18 @@
   "models": [
     {
       "model": "Random Forest",
-      "precision": 0.8175,
-      "recall": 0.7095,
-      "f1": 0.7597,
-      "roc_auc": 0.703,
-      "pr_auc": 0.8574,
-      "balanced_acc": 0.6389,
-      "train_s": 1.0011,
-      "infer_ms_per_row": 0.006635,
-      "tp": 4560,
-      "fp": 1018,
-      "tn": 1340,
-      "fn": 1867
+      "precision": 0.8083,
+      "recall": 0.7475,
+      "f1": 0.7767,
+      "roc_auc": 0.7004,
+      "pr_auc": 0.856,
+      "balanced_acc": 0.6322,
+      "train_s": 7.4538,
+      "infer_ms_per_row": 0.0208,
+      "tp": 4804,
+      "fp": 1139,
+      "tn": 1219,
+      "fn": 1623
     },
     {
       "model": "Logistic Regression",
@@ -66,8 +68,8 @@
       "roc_auc": 0.6829,
       "pr_auc": 0.842,
       "balanced_acc": 0.625,
-      "train_s": 0.0479,
-      "infer_ms_per_row": 0.000228,
+      "train_s": 0.1135,
+      "infer_ms_per_row": 0.0005,
       "tp": 4812,
       "fp": 1176,
       "tn": 1182,
@@ -78,42 +80,42 @@
     {
       "model": "Random Forest",
       "threshold": 0.3,
-      "precision": 0.7551,
-      "recall": 0.9818,
-      "f1": 0.8536,
-      "balanced_acc": 0.5568
+      "precision": 0.7504,
+      "recall": 0.9863,
+      "f1": 0.8524,
+      "balanced_acc": 0.5462
     },
     {
       "model": "Random Forest",
       "threshold": 0.4,
-      "precision": 0.7751,
-      "recall": 0.9136,
-      "f1": 0.8387,
-      "balanced_acc": 0.5955
+      "precision": 0.7666,
+      "recall": 0.9389,
+      "f1": 0.844,
+      "balanced_acc": 0.5799
     },
     {
       "model": "Random Forest",
       "threshold": 0.5,
-      "precision": 0.8175,
-      "recall": 0.7095,
-      "f1": 0.7597,
-      "balanced_acc": 0.6389
+      "precision": 0.8083,
+      "recall": 0.7475,
+      "f1": 0.7767,
+      "balanced_acc": 0.6322
     },
     {
       "model": "Random Forest",
       "threshold": 0.6,
-      "precision": 0.8771,
-      "recall": 0.4176,
-      "f1": 0.5658,
-      "balanced_acc": 0.6291
+      "precision": 0.8669,
+      "recall": 0.462,
+      "f1": 0.6027,
+      "balanced_acc": 0.6343
     },
     {
       "model": "Random Forest",
       "threshold": 0.7,
-      "precision": 0.9055,
-      "recall": 0.2533,
-      "f1": 0.3959,
-      "balanced_acc": 0.5906
+      "precision": 0.898,
+      "recall": 0.2835,
+      "f1": 0.4309,
+      "balanced_acc": 0.5979
     },
     {
       "model": "Logistic Regression",
@@ -157,16 +159,16 @@
     }
   ],
   "feature_importance": {
-    "prev_sessions": 0.1995,
-    "elapsed_min": 0.16,
-    "price_log": 0.1515,
-    "cat_freq": 0.1277,
-    "hour": 0.1016,
-    "n_views_same_item": 0.0811,
-    "dow": 0.0593,
-    "n_events_before": 0.0435,
-    "n_unique_items": 0.0397,
-    "n_views_before": 0.036
+    "prev_sessions": 0.1926,
+    "elapsed_min": 0.1617,
+    "price_log": 0.155,
+    "cat_freq": 0.1297,
+    "hour": 0.1024,
+    "n_views_same_item": 0.0795,
+    "dow": 0.0615,
+    "n_events_before": 0.0421,
+    "n_unique_items": 0.0396,
+    "n_views_before": 0.0359
   },
   "feature_descriptive_stats": {
     "n_events_before": {
@@ -333,8 +335,8 @@
       "mean_latency_s": 37343.6235,
       "median_latency_s": 26765.0,
       "pct_decided_before_deadline": 3.597,
-      "effective_recall": 0.0176,
-      "tp_on_time": 113,
+      "effective_recall": 0.0198,
+      "tp_on_time": 127,
       "total_actual_abandoned": 6427
     },
     {
@@ -343,8 +345,8 @@
       "mean_latency_s": 1792.3429,
       "median_latency_s": 1788.0,
       "pct_decided_before_deadline": 60.4667,
-      "effective_recall": 0.3909,
-      "tp_on_time": 2512,
+      "effective_recall": 0.4129,
+      "tp_on_time": 2654,
       "total_actual_abandoned": 6427
     },
     {
@@ -353,8 +355,8 @@
       "mean_latency_s": 150.2142,
       "median_latency_s": 149.0,
       "pct_decided_before_deadline": 100.0,
-      "effective_recall": 0.7095,
-      "tp_on_time": 4560,
+      "effective_recall": 0.7475,
+      "tp_on_time": 4804,
       "total_actual_abandoned": 6427
     },
     {
@@ -363,8 +365,8 @@
       "mean_latency_s": 30.5147,
       "median_latency_s": 30.0,
       "pct_decided_before_deadline": 100.0,
-      "effective_recall": 0.7095,
-      "tp_on_time": 4560,
+      "effective_recall": 0.7475,
+      "tp_on_time": 4804,
       "total_actual_abandoned": 6427
     },
     {
@@ -373,24 +375,24 @@
       "mean_latency_s": 5.5187,
       "median_latency_s": 5.0,
       "pct_decided_before_deadline": 100.0,
-      "effective_recall": 0.7095,
-      "tp_on_time": 4560,
+      "effective_recall": 0.7475,
+      "tp_on_time": 4804,
       "total_actual_abandoned": 6427
     }
   ],
   "streaming_benchmark": {
-    "engine_used": "Python Native Micro-Batch Streaming Runner (2s Trigger, Atomic File Rename)",
-    "fallback_reason": "No module named 'pyspark'",
+    "engine_used": "PySpark Structured Streaming (Apache Spark 4.0.5, local[*], 2s Trigger, Atomic File Rename)",
+    "fallback_reason": "",
     "total_streamed_rows": 1000,
-    "num_micro_batches": 7,
-    "mean_latency_s": 1.2735,
-    "std_latency_s": 0.6053,
-    "min_latency_s": 0.498,
-    "p25_latency_s": 0.5571,
-    "median_latency_s": 1.2596,
-    "p75_latency_s": 2.0006,
-    "max_latency_s": 2.0766,
-    "mean_batch_infer_ms": 28.9815
+    "num_micro_batches": 10,
+    "mean_latency_s": 1.9262,
+    "std_latency_s": 0.6797,
+    "min_latency_s": 0.8595,
+    "p25_latency_s": 1.2318,
+    "median_latency_s": 2.041,
+    "p75_latency_s": 2.4356,
+    "max_latency_s": 3.0805,
+    "mean_batch_infer_ms": 20.8
   },
   "total_pipeline_runtime_s": 53.0
 }

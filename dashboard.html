@@ -693,10 +693,10 @@
       <span class="topbar-meta">Kelompok 15 · Serving Layer (6-Layer Lambda Architecture WS2) · Retailrocket (2.756.101 Events · 43.924 Cart Sessions)</span>
     </div>
     <div class="topbar-right">
-      <span class="topbar-meta">Baseline CPU: i5-12450HX · 11.78 GB RAM</span>
+      <span class="topbar-meta">Colab Spark 4.0.5 · Serving Host: i5-12450HX · 11.78 GB RAM</span>
       <div class="status-pill">
         <span class="status-dot"></span>
-        <span>Speed Layer: 1.27s Mean Latency</span>
+        <span>Speed Layer: 1.93s Mean Latency</span>
       </div>
     </div>
   </header>
@@ -729,8 +729,8 @@
       </div>
       <div class="telemetry-cell">
         <div class="telemetry-label">Random Forest PR-AUC</div>
-        <div class="telemetry-val" style="color: var(--accent-primary);">0.8574</div>
-        <div class="telemetry-sub">ROC-AUC: 0.7030 · Precision: 0.8175</div>
+        <div class="telemetry-val" style="color: var(--accent-primary);">0.8560</div>
+        <div class="telemetry-sub">ROC-AUC: 0.7004 · F1-Score: 0.7767</div>
       </div>
       <div class="telemetry-cell">
         <div class="telemetry-label">Median Remaining Session</div>
@@ -739,8 +739,8 @@
       </div>
       <div class="telemetry-cell">
         <div class="telemetry-label">Effective Recall Gain</div>
-        <div class="telemetry-val" style="color: var(--status-ok);">40.3×</div>
-        <div class="telemetry-sub">0.7095 (NRT) vs 0.0176 (Daily Batch)</div>
+        <div class="telemetry-val" style="color: var(--status-ok);">37.8×</div>
+        <div class="telemetry-sub">0.7475 (NRT) vs 0.0198 (Daily Batch)</div>
       </div>
     </section>
 
@@ -769,7 +769,7 @@
             </div>
             <div style="text-align:right;">
               <div style="font-size:11px; color:var(--text-muted);">Selected Effective Recall</div>
-              <div id="arch-selected-er" style="font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; color:var(--status-ok);">0.7095 (71.0%)</div>
+              <div id="arch-selected-er" style="font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:700; color:var(--status-ok);">0.7475 (74.8%)</div>
             </div>
           </div>
 
@@ -801,9 +801,9 @@
               <polyline fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,4"
                 points="100,179.2 235,88.2 370,25 505,25 615,25" />
 
-              <!-- Line 2: Effective Recall (1.76%, 39.09%, 70.95%, 70.95%, 70.95%) -->
+              <!-- Line 2: Effective Recall (1.98%, 41.29%, 74.75%, 74.75%, 74.75%) -->
               <polyline fill="none" stroke="#0f4c81" stroke-width="3"
-                points="100,182.2 235,122.5 370,71.5 505,71.5 615,71.5" />
+                points="100,181.8 235,118.9 370,65.4 505,65.4 615,65.4" />
 
               <!-- Data Points Deadline -->
               <rect x="96" y="175.2" width="8" height="8" fill="#ffffff" stroke="#64748b" stroke-width="2" />
@@ -813,18 +813,18 @@
               <rect x="611" y="21" width="8" height="8" fill="#ffffff" stroke="#64748b" stroke-width="2" />
 
               <!-- Data Points Effective Recall -->
-              <circle cx="100" cy="182.2" r="5" fill="#b91c1c" />
-              <circle cx="235" cy="122.5" r="5" fill="#b45309" />
-              <circle cx="370" cy="71.5" r="5" fill="#047857" />
-              <circle cx="505" cy="71.5" r="5" fill="#047857" />
-              <circle cx="615" cy="71.5" r="5" fill="#047857" />
+              <circle cx="100" cy="181.8" r="5" fill="#b91c1c" />
+              <circle cx="235" cy="118.9" r="5" fill="#b45309" />
+              <circle cx="370" cy="65.4" r="5" fill="#047857" />
+              <circle cx="505" cy="65.4" r="5" fill="#047857" />
+              <circle cx="615" cy="65.4" r="5" fill="#047857" />
 
               <!-- Value callouts -->
-              <text x="100" y="168" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c" font-family="IBM Plex Mono">1.8%</text>
-              <text x="235" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309" font-family="IBM Plex Mono">39.1%</text>
-              <text x="370" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">71.0%</text>
-              <text x="505" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">71.0%</text>
-              <text x="615" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">71.0%</text>
+              <text x="100" y="168" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c" font-family="IBM Plex Mono">2.0%</text>
+              <text x="235" y="137" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309" font-family="IBM Plex Mono">41.3%</text>
+              <text x="370" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">74.8%</text>
+              <text x="505" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">74.8%</text>
+              <text x="615" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="#047857" font-family="IBM Plex Mono">74.8%</text>
 
               <!-- Legend -->
               <line x1="75" y1="14" x2="100" y2="14" stroke="#0f4c81" stroke-width="3" />
@@ -853,8 +853,8 @@
                 <td class="num">37,343.62 s</td>
                 <td class="num">26,765.0 s</td>
                 <td class="num">3.60%</td>
-                <td class="num">113 / 6,427</td>
-                <td class="num"><span class="badge badge-danger">0.0176</span></td>
+                <td class="num">127 / 6,427</td>
+                <td class="num"><span class="badge badge-danger">0.0198</span></td>
               </tr>
               <tr data-idx="1">
                 <td>Batch Per Jam (1 Jam)</td>
@@ -862,8 +862,8 @@
                 <td class="num">1,792.34 s</td>
                 <td class="num">1,788.0 s</td>
                 <td class="num">60.47%</td>
-                <td class="num">2,512 / 6,427</td>
-                <td class="num"><span class="badge badge-warn">0.3909</span></td>
+                <td class="num">2,654 / 6,427</td>
+                <td class="num"><span class="badge badge-warn">0.4129</span></td>
               </tr>
               <tr data-idx="2" class="selected-row">
                 <td>Micro-Batch (5 Menit)</td>
@@ -871,8 +871,8 @@
                 <td class="num">150.21 s</td>
                 <td class="num">149.0 s</td>
                 <td class="num">100.00%</td>
-                <td class="num">4,560 / 6,427</td>
-                <td class="num"><span class="badge badge-ok">0.7095</span></td>
+                <td class="num">4,804 / 6,427</td>
+                <td class="num"><span class="badge badge-ok">0.7475</span></td>
               </tr>
               <tr data-idx="3">
                 <td>Near Real-Time (1 Menit)</td>
@@ -880,8 +880,8 @@
                 <td class="num">30.51 s</td>
                 <td class="num">30.0 s</td>
                 <td class="num">100.00%</td>
-                <td class="num">4,560 / 6,427</td>
-                <td class="num"><span class="badge badge-ok">0.7095</span></td>
+                <td class="num">4,804 / 6,427</td>
+                <td class="num"><span class="badge badge-ok">0.7475</span></td>
               </tr>
               <tr data-idx="4">
                 <td>Near Real-Time (10 Detik)</td>
@@ -889,8 +889,8 @@
                 <td class="num">5.52 s</td>
                 <td class="num">5.0 s</td>
                 <td class="num">100.00%</td>
-                <td class="num">4,560 / 6,427</td>
-                <td class="num"><span class="badge badge-ok">0.7095</span></td>
+                <td class="num">4,804 / 6,427</td>
+                <td class="num"><span class="badge badge-ok">0.7475</span></td>
               </tr>
             </tbody>
           </table>
@@ -900,21 +900,21 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2 class="panel-title">Speed Layer Micro-Batch Telemetry (2s Trigger)</h2>
-              <p class="panel-subtitle">Atomic file-based streaming benchmark &amp; real-time session scoring</p>
+              <h2 class="panel-title">Speed Layer Micro-Batch Telemetry (2s Trigger · Spark 4.0.5)</h2>
+              <p class="panel-subtitle">PySpark Structured Streaming atomic file benchmark &amp; real-time session scoring</p>
             </div>
           </div>
 
           <div class="cm-grid" style="margin-top:0; margin-bottom:14px;">
             <div class="cm-cell">
               <div class="cm-cell-title">Mean End-to-End Latency</div>
-              <div class="cm-cell-val" style="color:var(--accent-primary);">1.2735 s</div>
-              <div style="font-size:11px; color:var(--text-muted);">Median (P50): 1.2596 s</div>
+              <div class="cm-cell-val" style="color:var(--accent-primary);">1.9262 s</div>
+              <div style="font-size:11px; color:var(--text-muted);">Median (P50): 2.0410 s · Std: 0.6797 s</div>
             </div>
             <div class="cm-cell">
-              <div class="cm-cell-title">Min / Max Stream Latency</div>
-              <div class="cm-cell-val">0.498s / 2.077s</div>
-              <div style="font-size:11px; color:var(--text-muted);">Batch RF Inference: 28.98 ms</div>
+              <div class="cm-cell-title">Min / Max &amp; Quartiles</div>
+              <div class="cm-cell-val">0.860s / 3.081s</div>
+              <div style="font-size:11px; color:var(--text-muted);">Q1: 1.2318 s · Q3: 2.4356 s (N=1,000)</div>
             </div>
           </div>
 
@@ -947,7 +947,7 @@
             </table>
           </div>
           <p class="prose-note">
-            Formula: <code>Effective Recall = TP_before_deadline / (TP + FN)</code>. Under a 2-second micro-batch trigger, 100% of predicted cart abandonments are flagged within ~1.27 seconds of the first <code>addtocart</code> event—well inside the 85.0-second median remaining session window.
+            Formula: <code>Effective Recall = TP_before_deadline / (TP + FN)</code>. Under a 2-second PySpark Structured Streaming micro-batch trigger (Apache Spark 4.0.5), 100% of predicted cart abandonments are flagged within ~1.93 seconds of the first <code>addtocart</code> event (max 3.08s)—well inside the 85.0-second median remaining session window.
           </p>
         </div>
       </div>
@@ -962,7 +962,7 @@
             <p class="panel-subtitle">Strict chronological 80:20 split by cart_ts · class_weight="balanced" · 73.16% Abandoned class imbalance</p>
           </div>
           <div id="thresh-rec-badge" class="badge badge-ok" style="font-size:12px; padding:6px 10px;">
-            Balanced Strategy (Max Balanced Acc: 0.6389)
+            Balanced Strategy (F1: 0.7767 · Bal Acc: 0.6322)
           </div>
         </div>
         <div class="control-bar" style="margin-bottom:0;">
@@ -977,7 +977,7 @@
             </div>
           </div>
           <div style="font-size:12px; color:var(--text-secondary);">
-            <strong>Side-by-Side Trade-off:</strong> Random Forest leads on PR-AUC (0.8574), ROC-AUC (0.7030), &amp; Precision · Logistic Regression leads on Train/Infer Speed (29× faster)
+            <strong>Side-by-Side Trade-off:</strong> Random Forest leads on PR-AUC (0.8560), ROC-AUC (0.7004), F1 (0.7767), &amp; Threshold Robustness · LR suffers probability compression at τ &ge; 0.60
           </div>
         </div>
       </div>
@@ -988,21 +988,21 @@
           <div class="panel-header">
             <div>
               <h2 class="panel-title">Random Forest (Primary · Non-Linear Ensemble)</h2>
-              <p class="panel-subtitle">200 trees, max_depth=12 · Higher discrimination &amp; Precision</p>
+              <p class="panel-subtitle">200 trees, max_depth=12 · Higher discrimination &amp; calibrated threshold spread</p>
             </div>
-            <span class="badge badge-ok">PR-AUC: 0.8574</span>
+            <span class="badge badge-ok">PR-AUC: 0.8560</span>
           </div>
 
           <div class="cm-grid" style="margin-top:0; margin-bottom:14px;">
             <div class="cm-cell">
               <div class="cm-cell-title">Active Precision / Recall (τ)</div>
-              <div class="cm-cell-val" id="th-rf-pr" style="color:var(--accent-primary);">0.8175 / 0.7095</div>
-              <div style="font-size:11px; color:var(--text-muted);" id="th-rf-f1">F1-Score: 0.7597 · Bal Acc: 0.6389</div>
+              <div class="cm-cell-val" id="th-rf-pr" style="color:var(--accent-primary);">0.8083 / 0.7475</div>
+              <div style="font-size:11px; color:var(--text-muted);" id="th-rf-f1">F1-Score: 0.7767 · Bal Acc: 0.6322</div>
             </div>
             <div class="cm-cell">
               <div class="cm-cell-title">ROC-AUC &amp; Speed</div>
-              <div class="cm-cell-val">0.7030 ROC-AUC</div>
-              <div style="font-size:11px; color:var(--text-muted);">Train: 1.0011 s · Infer: 0.006635 ms/row</div>
+              <div class="cm-cell-val">0.7004 ROC-AUC</div>
+              <div style="font-size:11px; color:var(--text-muted);">Train: 7.4538 s · Infer: 0.0208 ms/row (~48.1k/s)</div>
             </div>
           </div>
 
@@ -1010,23 +1010,23 @@
           <div class="cm-grid" style="margin-top:0; margin-bottom:16px;">
             <div class="cm-cell">
               <div class="cm-cell-title">True Positive (TP · Caught)</div>
-              <div class="cm-cell-val" style="color:var(--status-ok);">4,560</div>
-              <div style="font-size:11px; color:var(--text-muted);">70.95% of 6,427 abandoned</div>
+              <div class="cm-cell-val" style="color:var(--status-ok);">4,804</div>
+              <div style="font-size:11px; color:var(--text-muted);">74.75% of 6,427 abandoned</div>
             </div>
             <div class="cm-cell">
               <div class="cm-cell-title">False Positive (FP · False Alarm)</div>
-              <div class="cm-cell-val" style="color:var(--status-warn);">1,018</div>
+              <div class="cm-cell-val" style="color:var(--status-warn);">1,139</div>
               <div style="font-size:11px; color:var(--text-muted);">Completed flagged as risk</div>
             </div>
             <div class="cm-cell">
               <div class="cm-cell-title">False Negative (FN · Missed)</div>
-              <div class="cm-cell-val" style="color:var(--status-danger);">1,867</div>
-              <div style="font-size:11px; color:var(--text-muted);">29.05% abandoned missed</div>
+              <div class="cm-cell-val" style="color:var(--status-danger);">1,623</div>
+              <div style="font-size:11px; color:var(--text-muted);">25.25% abandoned missed</div>
             </div>
             <div class="cm-cell">
               <div class="cm-cell-title">True Negative (TN · Organic)</div>
-              <div class="cm-cell-val" style="color:var(--accent-primary);">1,340</div>
-              <div style="font-size:11px; color:var(--text-muted);">56.83% completed specificity</div>
+              <div class="cm-cell-val" style="color:var(--accent-primary);">1,219</div>
+              <div style="font-size:11px; color:var(--text-muted);">51.70% completed specificity</div>
             </div>
           </div>
 
@@ -1042,11 +1042,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-th="0.3"><td><strong>0.30</strong></td><td class="num">0.7551</td><td class="num">0.9818</td><td class="num">0.8536</td><td class="num">0.5568</td></tr>
-              <tr data-th="0.4"><td><strong>0.40</strong></td><td class="num">0.7751</td><td class="num">0.9136</td><td class="num">0.8387</td><td class="num">0.5955</td></tr>
-              <tr data-th="0.5" class="selected-row"><td><strong>0.50</strong></td><td class="num">0.8175</td><td class="num">0.7095</td><td class="num">0.7597</td><td class="num">0.6389</td></tr>
-              <tr data-th="0.6"><td><strong>0.60</strong></td><td class="num">0.8771</td><td class="num">0.4176</td><td class="num">0.5658</td><td class="num">0.6291</td></tr>
-              <tr data-th="0.7"><td><strong>0.70</strong></td><td class="num">0.9055</td><td class="num">0.2533</td><td class="num">0.3959</td><td class="num">0.5906</td></tr>
+              <tr data-th="0.3"><td><strong>0.30</strong></td><td class="num">0.7504</td><td class="num">0.9863</td><td class="num">0.8524</td><td class="num">0.5462</td></tr>
+              <tr data-th="0.4"><td><strong>0.40</strong></td><td class="num">0.7666</td><td class="num">0.9389</td><td class="num">0.8440</td><td class="num">0.5799</td></tr>
+              <tr data-th="0.5" class="selected-row"><td><strong>0.50</strong></td><td class="num">0.8083</td><td class="num">0.7475</td><td class="num">0.7767</td><td class="num">0.6322</td></tr>
+              <tr data-th="0.6"><td><strong>0.60</strong></td><td class="num">0.8669</td><td class="num">0.4620</td><td class="num">0.6027</td><td class="num">0.6343</td></tr>
+              <tr data-th="0.7"><td><strong>0.70</strong></td><td class="num">0.8980</td><td class="num">0.2835</td><td class="num">0.4309</td><td class="num">0.5979</td></tr>
             </tbody>
           </table>
         </div>
@@ -1056,7 +1056,7 @@
           <div class="panel-header">
             <div>
               <h2 class="panel-title">Logistic Regression (Baseline · Linear Fast)</h2>
-              <p class="panel-subtitle">StandardScaler + LogisticRegression · 29× faster inference</p>
+              <p class="panel-subtitle">StandardScaler + LogisticRegression · 41.6× faster inference; recall collapses at τ &ge; 0.60</p>
             </div>
             <span class="badge badge-warn">PR-AUC: 0.8420</span>
           </div>
@@ -1070,7 +1070,7 @@
             <div class="cm-cell">
               <div class="cm-cell-title">ROC-AUC &amp; Speed</div>
               <div class="cm-cell-val">0.6829 ROC-AUC</div>
-              <div style="font-size:11px; color:var(--text-muted);">Train: 0.0479 s · Infer: 0.000228 ms/row</div>
+              <div style="font-size:11px; color:var(--text-muted);">Train: 0.1135 s · Infer: 0.0005 ms/row</div>
             </div>
           </div>
 
@@ -1137,52 +1137,52 @@
             <div class="bar-item">
               <span class="bar-label">1. prev_sessions (Strict Expanding)</span>
               <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
-              <span class="bar-val">0.1995</span>
+              <span class="bar-val">0.1926</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">2. elapsed_min (Time to Cart)</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 80.2%;"></div></div>
-              <span class="bar-val">0.1600</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 84.0%;"></div></div>
+              <span class="bar-val">0.1617</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">3. price_log (Item Price prop 790)</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 75.9%;"></div></div>
-              <span class="bar-val">0.1515</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 80.5%;"></div></div>
+              <span class="bar-val">0.1550</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">4. cat_freq (Train Category Freq)</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 64.0%;"></div></div>
-              <span class="bar-val">0.1277</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 67.3%;"></div></div>
+              <span class="bar-val">0.1297</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">5. hour (Hour of Day UTC)</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 50.9%;"></div></div>
-              <span class="bar-val">0.1016</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 53.2%;"></div></div>
+              <span class="bar-val">0.1024</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">6. n_views_same_item</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 40.7%;"></div></div>
-              <span class="bar-val">0.0811</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 41.3%;"></div></div>
+              <span class="bar-val">0.0795</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">7. dow (Day of Week)</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 29.7%;"></div></div>
-              <span class="bar-val">0.0593</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 31.9%;"></div></div>
+              <span class="bar-val">0.0615</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">8. n_events_before</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 21.8%;"></div></div>
-              <span class="bar-val">0.0435</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 21.9%;"></div></div>
+              <span class="bar-val">0.0421</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">9. n_unique_items</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 19.9%;"></div></div>
-              <span class="bar-val">0.0397</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 20.6%;"></div></div>
+              <span class="bar-val">0.0396</span>
             </div>
             <div class="bar-item">
               <span class="bar-label">10. n_views_before</span>
-              <div class="bar-track"><div class="bar-fill" style="width: 18.0%;"></div></div>
-              <span class="bar-val">0.0360</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 18.6%;"></div></div>
+              <span class="bar-val">0.0359</span>
             </div>
           </div>
 
@@ -1392,11 +1392,11 @@
               <div class="arch-col-header"><span>Processing (Lambda)</span><span class="arch-col-step">L4</span></div>
               <div class="arch-node node-active">
                 <div class="arch-node-title"><span>Batch Layer</span><span class="arch-tag arch-tag-active">Active</span></div>
-                <div class="arch-node-desc">Apache Spark / PySpark <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split)</div>
+                <div class="arch-node-desc">Apache Spark 4.0.5 / PySpark <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split)</div>
               </div>
               <div class="arch-node node-active">
                 <div class="arch-node-title"><span>Speed Layer</span><span class="arch-tag arch-tag-active">Active</span></div>
-                <div class="arch-node-desc">Spark Structured Streaming (<code>foreachBatch</code> 2s Colab; Python fallback on Windows)</div>
+                <div class="arch-node-desc">Spark Structured Streaming (<code>foreachBatch</code> 2s trigger Colab, mean 1.93s, max 3.08s)</div>
               </div>
             </div>
 
@@ -1405,7 +1405,7 @@
               <div class="arch-col-header"><span>Analytics Layer</span><span class="arch-col-step">L5</span></div>
               <div class="arch-node node-active">
                 <div class="arch-node-title"><span>Machine Learning</span><span class="arch-tag arch-tag-active">Active</span></div>
-                <div class="arch-node-desc">Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall</div>
+                <div class="arch-node-desc">Random Forest (PR-AUC 0.8560, ROC-AUC 0.7004) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall (37.8&times;)</div>
               </div>
               <div class="arch-node node-active">
                 <div class="arch-node-title"><span>Spark SQL / Trino</span><span class="arch-tag arch-tag-sim">EDA</span></div>
@@ -1479,13 +1479,13 @@
             <tr>
               <td><strong>4. Processing (Lambda)</strong></td>
               <td>Batch Layer: Apache Spark &middot; Speed Layer: Spark Structured Streaming</td>
-              <td>PySpark <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split) &amp; Structured Streaming (<code>foreachBatch</code> 2s Colab / Python Windows fallback)</td>
+              <td>PySpark 4.0.5 <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split) &amp; Structured Streaming (<code>foreachBatch</code> 2s Colab, mean 1.93s)</td>
               <td><span class="badge badge-ok">Active Lambda</span></td>
             </tr>
             <tr>
               <td><strong>5. Analytics Layer</strong></td>
               <td>Spark SQL / Trino &amp; Machine Learning (fraud, recommendation, cart abandonment, segmentation)</td>
-              <td>Behavioral &amp; temporal EDA + Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall simulation</td>
+              <td>Behavioral &amp; temporal EDA + Random Forest (PR-AUC 0.8560, ROC-AUC 0.7004) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall (37.8&times;)</td>
               <td><span class="badge badge-ok">Active Focus #3</span></td>
             </tr>
             <tr>
@@ -1504,43 +1504,48 @@
         </table>
       </div>
 
-      <!-- Bottom Split: Variety/Volume & 5 Analytical Goals -->
+      <!-- Bottom Split: Big Data 5Vs & 5 Analytical Goals -->
       <div class="split-grid-equal">
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2 class="panel-title">Data Variety &amp; Volume Justification (WS2 &sect;1.1&ndash;1.3)</h2>
-              <p class="panel-subtitle">Retailrocket serves as a representative sample validating a Big Data production blueprint</p>
+              <h2 class="panel-title">Big Data 5Vs Assessment &amp; Scale Justification (WS2 &sect;1.1&ndash;1.3)</h2>
+              <p class="panel-subtitle">Empirical 5Vs evaluation on Retailrocket vs. enterprise production design target</p>
             </div>
           </div>
           <table class="data-table">
             <thead>
               <tr>
-                <th>Big Data Dimension</th>
-                <th>Prototype Sample (Retailrocket)</th>
+                <th>5Vs Dimension</th>
+                <th>Prototype Evidence (Retailrocket)</th>
                 <th>Production Scale Target (WS2)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Structured</strong></td>
-                <td>22,457 transactions (~165/day)</td>
-                <td>50,000&ndash;200,000 OLTP orders/day</td>
+                <td><strong>1. Volume</strong></td>
+                <td>23.03M rows (2.75M events + 20.28M item props; 2M/chunk scan)</td>
+                <td>500k&ndash;2M events/day, 50k&ndash;200k orders/day, GB/month lake</td>
               </tr>
               <tr>
-                <td><strong>Semi-Structured</strong></td>
-                <td>2.75M events (~20k/day) + 20.27M item props</td>
-                <td>500,000&ndash;2,000,000 JSON events/day + catalog API</td>
+                <td><strong>2. Velocity</strong></td>
+                <td>~20k events/day &middot; 85.0s median remaining &middot; 1.93s PySpark stream</td>
+                <td>Sub-second to second-scale streaming under flash-sale spikes</td>
               </tr>
               <tr>
-                <td><strong>Unstructured</strong></td>
-                <td>Not in Retailrocket CSV (Blueprint only)</td>
-                <td>Product reviews, customer text, &amp; catalog images</td>
+                <td><strong>3. Variety</strong></td>
+                <td>Structured (22,457 tx) + Semi-Structured (clickstream &amp; props)</td>
+                <td>Adds Unstructured product reviews, customer text, &amp; images</td>
               </tr>
               <tr>
-                <td><strong>Velocity &amp; Growth</strong></td>
-                <td>23.03M rows (4.5 mos) &middot; 1.27s mean stream latency</td>
-                <td>Tens&ndash;hundreds GB/month raw lake &middot; flash-sale spikes</td>
+                <td><strong>4. Veracity</strong></td>
+                <td>No native <code>session_id</code>, <code>'n'</code>-prefixed prices, 1.18% missing, 72.83% skew</td>
+                <td>Automated schema validation, point-in-time joins, &amp; drift alerts</td>
+              </tr>
+              <tr>
+                <td><strong>5. Value</strong></td>
+                <td>Effective Recall 0.7475 (37.8&times; vs Daily Batch) + tiered &tau; CRM actions</td>
+                <td>Live margin-aware voucher orchestration &amp; online A/B uplift testing</td>
               </tr>
             </tbody>
           </table>
@@ -1602,38 +1607,38 @@
 
   <script>
     const WINDOW_DATA = [
-      { mode: "Batch Harian (24 Jam)", er: "0.0176 (1.8%)", color: "var(--status-danger)" },
-      { mode: "Batch Per Jam (1 Jam)", er: "0.3909 (39.1%)", color: "var(--status-warn)" },
-      { mode: "Micro-Batch (5 Menit)", er: "0.7095 (71.0%)", color: "var(--status-ok)" },
-      { mode: "Near Real-Time (1 Menit)", er: "0.7095 (71.0%)", color: "var(--status-ok)" },
-      { mode: "Near Real-Time (10 Detik)", er: "0.7095 (71.0%)", color: "var(--status-ok)" }
+      { mode: "Batch Harian (24 Jam)", er: "0.0198 (2.0%)", color: "var(--status-danger)" },
+      { mode: "Batch Per Jam (1 Jam)", er: "0.4129 (41.3%)", color: "var(--status-warn)" },
+      { mode: "Micro-Batch (5 Menit)", er: "0.7475 (74.8%)", color: "var(--status-ok)" },
+      { mode: "Near Real-Time (1 Menit)", er: "0.7475 (74.8%)", color: "var(--status-ok)" },
+      { mode: "Near Real-Time (10 Detik)", er: "0.7475 (74.8%)", color: "var(--status-ok)" }
     ];
 
     const THRESH_DATA = {
       "0.3": {
-        rf_pr: "0.7551 / 0.9818", rf_f1: "F1-Score: 0.8536 · Bal Acc: 0.5568",
+        rf_pr: "0.7504 / 0.9863", rf_f1: "F1-Score: 0.8524 · Bal Acc: 0.5462",
         lr_pr: "0.7584 / 0.9687", lr_f1: "F1-Score: 0.8508 · Bal Acc: 0.5639",
-        badge: "Max Recall Mode (98.18% Caught · Low-Cost UI Reminder)", badgeClass: "badge-warn"
+        badge: "Max Recall Mode (98.63% Caught · Low-Cost UI Reminder)", badgeClass: "badge-warn"
       },
       "0.4": {
-        rf_pr: "0.7751 / 0.9136", rf_f1: "F1-Score: 0.8387 · Bal Acc: 0.5955",
+        rf_pr: "0.7666 / 0.9389", rf_f1: "F1-Score: 0.8440 · Bal Acc: 0.5799",
         lr_pr: "0.7694 / 0.9225", lr_f1: "F1-Score: 0.8390 · Bal Acc: 0.5845",
-        badge: "High Coverage Mode (91.36% Recall · Push Notification)", badgeClass: "badge-ok"
+        badge: "High Coverage Mode (93.89% Recall · Push Notification)", badgeClass: "badge-ok"
       },
       "0.5": {
-        rf_pr: "0.8175 / 0.7095", rf_f1: "F1-Score: 0.7597 · Bal Acc: 0.6389",
+        rf_pr: "0.8083 / 0.7475", rf_f1: "F1-Score: 0.7767 · Bal Acc: 0.6322",
         lr_pr: "0.8036 / 0.7487", lr_f1: "F1-Score: 0.7752 · Bal Acc: 0.6250",
-        badge: "Balanced Strategy (Max Balanced Acc: 0.6389)", badgeClass: "badge-ok"
+        badge: "Balanced Strategy (F1: 0.7767 · Bal Acc: 0.6322)", badgeClass: "badge-ok"
       },
       "0.6": {
-        rf_pr: "0.8771 / 0.4176", rf_f1: "F1-Score: 0.5658 · Bal Acc: 0.6291",
+        rf_pr: "0.8669 / 0.4620", rf_f1: "F1-Score: 0.6027 · Bal Acc: 0.6343",
         lr_pr: "0.8690 / 0.2983", lr_f1: "F1-Score: 0.4441 · Bal Acc: 0.5879",
-        badge: "High Precision Mode (87.71% Precision · Discount Voucher)", badgeClass: "badge-ok"
+        badge: "Peak Balanced Acc (0.6343 · 86.69% Precision · Discount Voucher)", badgeClass: "badge-ok"
       },
       "0.7": {
-        rf_pr: "0.9055 / 0.2533", rf_f1: "F1-Score: 0.3959 · Bal Acc: 0.5906",
+        rf_pr: "0.8980 / 0.2835", rf_f1: "F1-Score: 0.4309 · Bal Acc: 0.5979",
         lr_pr: "0.9369 / 0.0300", lr_f1: "F1-Score: 0.0582 · Bal Acc: 0.5123",
-        badge: "Strict Precision Mode (90.55% Precision · Margin Protection)", badgeClass: "badge-warn"
+        badge: "Strict Precision Mode (89.80% Precision · Margin Protection)", badgeClass: "badge-warn"
       }
     };
 

@@ -159,12 +159,12 @@ def test_dashboards_and_ipynb_exist_and_valid():
     with open(html_path, "r", encoding="utf-8") as f:
         html_txt = f.read()
     assert "Early Cart Abandonment Telemetry" in html_txt
-    assert "0.8574" in html_txt
-    assert "0.7095" in html_txt
+    assert "0.8560" in html_txt
+    assert "0.7475" in html_txt
     assert "thresh-table-rf" in html_txt
     assert "thresh-table-lr" in html_txt
-    # Verify WS2 6-Layer + Cross-Cutting Lambda Architecture alignment
-    for token in ("tab-ws2", "Apache Kafka", "Debezium", "Snowflake/BigQuery", "Prometheus", "Grafana", "Power BI"):
+    # Verify WS2 6-Layer + Cross-Cutting Lambda Architecture & Big Data 5Vs alignment
+    for token in ("tab-ws2", "Apache Kafka", "Debezium", "Snowflake/BigQuery", "Prometheus", "Grafana", "Power BI", "4. Veracity", "5. Value"):
         assert token in html_txt, f"Missing WS2 architecture token in dashboard.html: {token}"
 
     with open(ipynb_path, "r", encoding="utf-8") as f:
