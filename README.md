@@ -9,17 +9,21 @@ Proyek akhir mata kuliah **Teknologi Big Data** (Sekolah Vokasi IPB University) 
 
 ---
 
-## Fitur Utama Dashboard (`dashboard.py`)
+## Fitur Utama Dashboard (`dashboard.py` & `dashboard.html`)
 
-1. **Live Micro-Batch Stream (Random Forest vs. Logistic Regression):**
-   - Menulis berkas *chunk* sesi uji nyata Retailrocket secara bertahap dengan *atomic file rename* (`os.replace`) dan memprediksi kedua model sekaligus secara *live* dalam tampilan berdampingan.
+Dashboard berperan sebagai **Visualization / Serving Layer (Streamlit)** dalam rancangan *6-Layer End-to-End E-Commerce Lambda Architecture* (Worksheet 2):
+
+1. **Speed Layer — Live Micro-Batch Stream (Random Forest vs. Logistic Regression):**
+   - Menulis berkas *chunk* sesi uji nyata Retailrocket secara bertahap dengan *atomic file rename* (`os.replace`, trigger 2 detik) sebagai simulasi *streaming* Apache Kafka + Spark Structured Streaming, lalu memprediksi kedua model sekaligus secara *live* berdampingan.
    - Mengukur *Live Accuracy*, *Flagged At-Risk (%)*, *Mean End-to-End Latency (ms)*, dan *Last Batch Inference (ms)* secara nyata.
-2. **Real-Time Single-Session Predictor (RF vs. LR):**
+2. **Serving Layer — Real-Time Single-Session Predictor (RF vs. LR):**
    - Simulator interaktif 10 fitur perilaku pembeli (dilengkapi 3 *preset* cepat) untuk melihat probabilitas batal *checkout*, rekomendasi aksi CRM, dan waktu inferensi per baris secara berdampingan antara Random Forest dan Logistic Regression.
-3. **Model Benchmark & Batch vs. Near Real-Time Comparison:**
+3. **Batch vs. Speed Layer — Model Benchmark & Effective Recall:**
    - Perbandingan lengkap metrik uji kronologis (`N = 8,785`), *Confusion Matrix*, sensitivitas *threshold* ($\tau \in [0.30, 0.70]$), dan simulasi **Effective Recall** lintas 5 jendela arsitektur (86.400s s.d. 10s).
-4. **Feature Drivers & Temporal Behavior:**
+4. **Analytics Layer — Feature Drivers & Temporal EDA:**
    - Visualisasi *Gini Feature Importance* dan pola tingkat *abandonment* berdasarkan jam (UTC) dan hari dalam minggu.
+5. **End-to-End Architecture (WS2 Blueprint vs. Prototype):**
+   - Diagram *6-Layer + Cross-Cutting Lambda Architecture* (`Data Sources` → `Ingestion` → `Storage` → `Processing` → `Analytics` → `Serving` + `Orchestration & Monitoring`), tabel pemetaan komponen rancangan produksi WS2 vs. prototipe implementasi, justifikasi skala *Big Data* (3V), serta posisi proyek sebagai realisasi Fokus Analitik #3 (*Cart Abandonment*). *(Tersedia juga secara native di Tab 4 `dashboard.html`.)*
 
 ---
 

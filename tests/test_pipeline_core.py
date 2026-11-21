@@ -163,6 +163,9 @@ def test_dashboards_and_ipynb_exist_and_valid():
     assert "0.7095" in html_txt
     assert "thresh-table-rf" in html_txt
     assert "thresh-table-lr" in html_txt
+    # Verify WS2 6-Layer + Cross-Cutting Lambda Architecture alignment
+    for token in ("tab-ws2", "Apache Kafka", "Debezium", "Snowflake/BigQuery", "Prometheus", "Grafana", "Power BI"):
+        assert token in html_txt, f"Missing WS2 architecture token in dashboard.html: {token}"
 
     with open(ipynb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
@@ -259,10 +262,12 @@ def test_streamlit_dashboard_live_inference_end_to_end():
     at.run()
     assert not at.exception, f"Dashboard raised exception on load: {at.exception}"
 
-    # Verify single-session predictor renders both RF and LR side-by-side
+    # Verify single-session predictor renders both RF and LR side-by-side + WS2 Architecture tab metrics
     metric_labels = [m.label for m in at.metric]
     assert metric_labels.count("Abandonment Probability") == 2
     assert "Effective Recall" in metric_labels
+    assert "Architecture Pattern" in metric_labels
+    assert "Production Target" in metric_labels
 
     # Trigger +1 Live Micro-Batch button and verify real dual-model scoring ran cleanly
     step_btns = [b for b in at.button if b.label == "+1 Live Micro-Batch"]

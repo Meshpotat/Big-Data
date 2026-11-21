@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Live Operational Telemetry & Dual-Model Side-by-Side Inference Dashboard — Kelompok 15
+Serving Layer (Streamlit) of the 6-Layer End-to-End E-Commerce Lambda Architecture (WS2).
 Compares Random Forest and Logistic Regression side-by-side across:
-  1) Live Atomic Micro-Batch File Stream (real Retailrocket chronological test sessions)
-  2) Interactive Single-Session Predictor (unified input -> split RF vs LR output)
-  3) Chronological Test Benchmarks & Threshold Sensitivity (split RF vs LR panels)
-  4) Batch vs. Near Real-Time Effective Recall & Temporal EDA
+  1) Speed Layer: Live Atomic Micro-Batch File Stream (simulating Kafka + Spark Structured Streaming)
+  2) Serving Layer: Interactive Single-Session Predictor (unified input -> split RF vs LR output)
+  3) Batch vs. Speed Layer: Chronological Test Benchmarks, Threshold Sensitivity, & Effective Recall
+  4) Analytics Layer: Gini Feature Drivers & Empirical Temporal EDA
+  5) End-to-End Architecture: WS2 6-Layer + Cross-Cutting Blueprint vs. Prototype Mapping
 
 Run via:
   streamlit run dashboard.py
@@ -173,8 +175,8 @@ def render_live_stream_half(col, hist: pd.DataFrame, model_title: str, prefix: s
         k1, k2, k3, k4 = st.columns(4)
         k1.metric("Live Accuracy", f"{acc_rate:.1f}%", "vs. Retailrocket")
         k2.metric("Flagged At-Risk", f"{risk_rate:.1f}%", f"τ = {threshold:.2f}")
-        k3.metric("Mean E2E Latency", f"{mean_e2e:.2f} ms", "Write -> Predict")
-        k4.metric("Last Batch Infer", f"{last_infer:.2f} ms", f"{len(hist):,} rows")
+        k3.metric("Mean E2E Latency", f"{mean_e2e:.1f} ms", "Write -> Predict")
+        k4.metric("Last Batch Infer", f"{last_infer:.1f} ms", f"{len(hist):,} rows")
 
         cols = [
             "batch_id",
@@ -308,6 +310,15 @@ with st.sidebar:
     batch_size = st.slider("Sessions per Micro-Batch", min_value=5, max_value=50, value=10, step=5)
 
     st.divider()
+    st.markdown("#### WS2 Architecture Context")
+    st.caption(
+        "**Pattern:** Lambda Architecture (Batch + Near Real-Time)\n\n"
+        "**Active Layer:** Serving Layer (Streamlit Operational UI)\n\n"
+        "**WS2 Focus Goal:** #3 Early Cart Abandonment Detection\n\n"
+        "**Scale:** ~20k/day Sample -> 500k–2M/day Production Blueprint"
+    )
+
+    st.divider()
     st.markdown("#### Hardware Baseline")
     st.caption(
         f"**CPU:** {hw['cpu_name']} ({hw['physical_cores']}C/{hw['logical_threads']}T)\n\n"
@@ -318,15 +329,16 @@ with st.sidebar:
 # --- HEADER & KEY TELEMETRY ---
 st.title("Real-Time Cart Abandonment Telemetry: Random Forest vs. Logistic Regression")
 st.caption(
+    f"Serving Layer (Streamlit) · 6-Layer E-Commerce Lambda Architecture (WS2) · "
     f"Retailrocket Clickstream ({ds['min_datetime_utc']} to {ds['max_datetime_utc']}) · "
-    f"Dual-Model Live Comparison · Threshold τ = {selected_thresh:.2f}"
+    f"Threshold τ = {selected_thresh:.2f}"
 )
 
 k1, k2, k3, k4, k5, k6 = st.columns(6)
 k1.metric("Total Events", f"{ds['total_events']:,}", f"{ds['total_all_sessions']:,} sessions")
 k2.metric("Cart Sessions", f"{ds['total_cart_sessions']:,}", f"Test Pool: {len(test_pool):,}")
 k3.metric("Abandonment Rate", f"{ds['abandoned_rate_pct']}%", f"{ds['abandoned_count']:,} abandoned")
-k4.metric("RF vs LR PR-AUC", "0.8574 vs 0.8420", "+1.54% RF advantage")
+k4.metric("RF PR-AUC", "0.8574", "vs. 0.8420 LR (+1.54%)")
 k5.metric("Median Remaining", f"{ds['session_remaining_sec_median']} s", "After 1st addtocart")
 win_row = sim_df[sim_df["mode"] == selected_window].iloc[0]
 k6.metric(
@@ -337,17 +349,22 @@ k6.metric(
 
 st.divider()
 
-tab_stream, tab_predictor, tab_compare, tab_eda = st.tabs(
+tab_stream, tab_predictor, tab_compare, tab_eda, tab_ws2 = st.tabs(
     [
-        "1. Live Micro-Batch Stream (RF vs. LR)",
-        "2. Real-Time Single-Session Predictor (RF vs. LR)",
-        "3. Model Benchmark & Batch vs. NRT Comparison",
-        "4. Feature Importance & Temporal Behavior",
+        "1. Live Stream (Speed)",
+        "2. Single Predictor (Serving)",
+        "3. Model & Batch vs. NRT",
+        "4. Feature & Temporal EDA",
+        "5. Architecture (WS2)",
     ]
 )
 
 # --- TAB 1: LIVE ATOMIC MICRO-BATCH STREAMING (UNIFIED SPLIT IN TWO) ---
 with tab_stream:
+    st.caption(
+        "**WS2 Speed Layer Prototype:** Simulates Apache Kafka + Spark Structured Streaming (2s trigger) via "
+        "atomic file staging (`os.replace`) scoring real Retailrocket test sessions with both models simultaneously."
+    )
     def render_live_stream_panel():
         if st.session_state.stream_running:
             execute_one_microbatch(rf_model, lr_model, test_pool, batch_size, selected_thresh)
@@ -648,3 +665,150 @@ with tab_eda:
             ]
         )
         st.dataframe(dow_df, use_container_width=True, hide_index=True)
+
+# --- TAB 5: END-TO-END ARCHITECTURE (WS2 BLUEPRINT VS. PROTOTYPE) ---
+with tab_ws2:
+    st.subheader("End-to-End E-Commerce Data Architecture (Worksheet 2 — Lambda Architecture)")
+    st.caption(
+        "Aligns the 6-Layer + Cross-Cutting E-Commerce Big Data Architecture designed in Worksheet 2 (WS2) "
+        "with the realized prototype components evaluated on the Retailrocket dataset."
+    )
+
+    a1, a2, a3, a4 = st.columns(4)
+    a1.metric("Architecture Pattern", "Lambda (Hybrid)", "Batch + Speed Layer")
+    a2.metric("Data Variety", "3 Types (WS2)", "Structured, Semi, Unstructured")
+    a3.metric("Prototype Sample", "~20k events/day", "2.75M events · 20.27M props")
+    a4.metric("Production Target", "500k–2M / day", "50k–200k orders · GB/month")
+
+    fig0_path = os.path.join(FIG_DIR, "fig0_pipeline_architecture.png")
+    if os.path.exists(fig0_path):
+        st.image(
+            fig0_path,
+            use_container_width=True,
+            caption=(
+                "Fig. 0. End-to-End E-Commerce Lambda Architecture (WS2) — "
+                "Solid Navy Borders: Implemented in Prototype | Dashed Muted Borders: Production Blueprint"
+            ),
+        )
+
+    st.markdown("#### 6-Layer + Cross-Cutting Component Mapping (WS2 Blueprint vs. Prototype)")
+    ws2_mapping_df = pd.DataFrame(
+        [
+            {
+                "Layer": "1. Data Sources",
+                "WS2 Production Blueprint": "Clickstream Web/Mobile, OLTP DB (PostgreSQL/MySQL), Payment Gateway API, Product Catalog API, Product Reviews",
+                "Prototype Implementation (Kelompok 15)": "Retailrocket Kaggle (events.csv 2.75M, item_properties 20.27M, category_tree 1,669) via kagglehub",
+                "Status": "Active (Clickstream & Catalog) / Blueprint (OLTP, Payment, Reviews)",
+            },
+            {
+                "Layer": "2. Ingestion Layer",
+                "WS2 Production Blueprint": "Apache Kafka (streaming events), Debezium (CDC from OLTP), Apache Airflow (scheduled batch)",
+                "Prototype Implementation (Kelompok 15)": "Chunked batch CSV loader + Atomic File Stream Producer (os.replace, 2s trigger) simulating Kafka",
+                "Status": "Simulated (Atomic Stream + Batch) / Blueprint (Kafka, Debezium)",
+            },
+            {
+                "Layer": "3. Storage Layer",
+                "WS2 Production Blueprint": "Amazon S3 / HDFS (Data Lake Raw), MongoDB (NoSQL Catalog/Reviews), Snowflake / BigQuery (Curated Warehouse)",
+                "Prototype Implementation (Kelompok 15)": "Raw CSV staging (reprocessable Data Lake) + curated artifacts in outputs/ (splits, .joblib, JSON, CSV)",
+                "Status": "Local Staging (Raw + Curated) / Blueprint (S3, MongoDB, DW)",
+            },
+            {
+                "Layer": "4. Processing (Lambda)",
+                "WS2 Production Blueprint": "Batch Layer: Apache Spark (historical aggregations & training) | Speed Layer: Spark Structured Streaming (near real-time)",
+                "Prototype Implementation (Kelompok 15)": "PySpark DataFrame/Window (GAP 30m, 10 anti-leakage features, 80:20 split) & Structured Streaming (foreachBatch 2s Colab; Python fallback Windows)",
+                "Status": "Active Prototype (Batch + Speed Layer)",
+            },
+            {
+                "Layer": "5. Analytics Layer",
+                "WS2 Production Blueprint": "Spark SQL / Trino (ad-hoc & BI analytics) + Machine Learning (fraud, recommendation, cart abandonment, segmentation)",
+                "Prototype Implementation (Kelompok 15)": "Temporal & behavioral EDA + Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall simulation",
+                "Status": "Active Prototype (Goal #3 Cart Abandonment)",
+            },
+            {
+                "Layer": "6. Serving / Viz",
+                "WS2 Production Blueprint": "Streamlit (real-time operational telemetry) & Power BI (executive business & inventory dashboards)",
+                "Prototype Implementation (Kelompok 15)": "Streamlit live dual-model app (dashboard.py, 5 tabs) + standalone static backup (dashboard.html, 4 tabs)",
+                "Status": "Active (Streamlit) / Blueprint (Power BI)",
+            },
+            {
+                "Layer": "Cross-Cutting Ops",
+                "WS2 Production Blueprint": "Apache Airflow (DAG orchestration), Prometheus (latency/metrics alerting), Grafana (observability dashboards)",
+                "Prototype Implementation (Kelompok 15)": "Automated unit & E2E verification suite (pytest + Streamlit AppTest covering anti-leakage, streaming, & live serving)",
+                "Status": "Production Blueprint (Airflow, Prometheus, Grafana) + Active Tests",
+            },
+        ]
+    )
+    st.table(ws2_mapping_df.set_index("Layer"))
+
+    col_ws_l, col_ws_r = st.columns(2, gap="medium")
+    with col_ws_l:
+        with st.container(border=True):
+            st.markdown("#### Data Variety & Big Data Scale Justification (WS2 §1.1–1.3)")
+            scale_df = pd.DataFrame(
+                [
+                    {
+                        "Dimension": "Structured",
+                        "Prototype (Retailrocket)": "22,457 transactions (transactionid in events.csv)",
+                        "Production Target (WS2)": "50,000–200,000 OLTP orders/day + payment records",
+                    },
+                    {
+                        "Dimension": "Semi-Structured",
+                        "Prototype (Retailrocket)": "2.75M clickstream events (~20k/day) + 20.27M item properties",
+                        "Production Target (WS2)": "500,000–2,000,000 JSON events/day + catalog API",
+                    },
+                    {
+                        "Dimension": "Unstructured",
+                        "Prototype (Retailrocket)": "Not in Retailrocket CSV (Production Blueprint)",
+                        "Production Target (WS2)": "Product reviews, customer feedback text, & images",
+                    },
+                    {
+                        "Dimension": "Storage & Velocity",
+                        "Prototype (Retailrocket)": "23.03M rows (4.5 mos) · 2s micro-batch stream",
+                        "Production Target (WS2)": "Tens–hundreds GB/month raw lake · flash-sale spikes",
+                    },
+                ]
+            )
+            st.table(scale_df.set_index("Dimension"))
+
+    with col_ws_r:
+        with st.container(border=True):
+            st.markdown("#### 5 WS2 Analytical Goals & Final Project Focus (WS2 §1.4)")
+            goals_df = pd.DataFrame(
+                [
+                    {
+                        "No": "1",
+                        "WS2 Analytical Goal": "Real-Time Fraud Detection",
+                        "Mode": "Speed Layer",
+                        "Scope": "Production Blueprint",
+                    },
+                    {
+                        "No": "2",
+                        "WS2 Analytical Goal": "Personalized Product Recommendation",
+                        "Mode": "Hybrid (Lambda)",
+                        "Scope": "Production Blueprint",
+                    },
+                    {
+                        "No": "3",
+                        "WS2 Analytical Goal": "User Behavior & Early Cart Abandonment",
+                        "Mode": "Hybrid (Lambda)",
+                        "Scope": "Implemented & Validated (Core Focus)",
+                    },
+                    {
+                        "No": "4",
+                        "WS2 Analytical Goal": "Sales & Inventory Dashboard (Power BI)",
+                        "Mode": "Batch Layer",
+                        "Scope": "Production Blueprint",
+                    },
+                    {
+                        "No": "5",
+                        "WS2 Analytical Goal": "Customer Segmentation",
+                        "Mode": "Batch Layer",
+                        "Scope": "Production Blueprint",
+                    },
+                ]
+            )
+            st.table(goals_df.set_index("No"))
+            st.caption(
+                "Note: Prototype honestly distinguishes active components validated on Retailrocket from "
+                "enterprise cloud infrastructure scoped as the WS2 production blueprint."
+            )

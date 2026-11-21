@@ -484,6 +484,196 @@
       margin-top: 10px;
     }
 
+    /* WS2 6-Layer End-to-End Lambda Architecture Diagram */
+    .arch-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .arch-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 500;
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .legend-swatch.active {
+      background: #eff6ff;
+      border: 2px solid var(--accent-primary);
+    }
+
+    .legend-swatch.blueprint {
+      background: #ffffff;
+      border: 1.5px dashed #94a3b8;
+    }
+
+    .arch-scroll {
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .arch-pipeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(185px, 1fr));
+      gap: 12px;
+      min-width: 1140px;
+    }
+
+    .arch-col {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .arch-col-header {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 7px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .arch-col-step {
+      font-family: 'IBM Plex Mono', monospace;
+      opacity: 0.85;
+      font-size: 10px;
+    }
+
+    .arch-node {
+      border-radius: 5px;
+      padding: 9px 10px;
+      font-size: 12px;
+      line-height: 1.38;
+    }
+
+    .arch-node.node-active {
+      background: #eff6ff;
+      border: 1.5px solid var(--accent-primary);
+      color: var(--text-primary);
+    }
+
+    .arch-node.node-blueprint {
+      background: #ffffff;
+      border: 1.5px dashed #94a3b8;
+      color: var(--text-secondary);
+    }
+
+    .arch-node-title {
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .arch-node-desc {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .arch-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 600;
+      padding: 1px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .arch-tag-active {
+      background: var(--accent-primary);
+      color: #ffffff;
+    }
+
+    .arch-tag-sim {
+      background: #e0f2fe;
+      color: var(--accent-primary);
+      border: 1px solid #bae6fd;
+    }
+
+    .arch-tag-blueprint {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .arch-crosscut {
+      margin-top: 12px;
+      min-width: 1140px;
+      background: var(--bg-subtle);
+      border: 1.5px dashed #94a3b8;
+      border-radius: 6px;
+      padding: 12px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .arch-crosscut-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .arch-crosscut-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .crosscut-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .crosscut-pill.pill-active {
+      background: #eff6ff;
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .badge-active {
+      background: var(--accent-soft);
+      color: var(--accent-primary);
+    }
+
+    .badge-blueprint {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
     @media (max-width: 1100px) {
       .telemetry-strip {
         grid-template-columns: repeat(3, 1fr);
@@ -500,7 +690,7 @@
   <header class="topbar">
     <div class="topbar-left">
       <h1 class="topbar-title">Early Cart Abandonment Telemetry &amp; Architecture Simulator</h1>
-      <span class="topbar-meta">Kelompok 15 · Retailrocket Clickstream (2.756.101 Events · 43.924 Cart Sessions)</span>
+      <span class="topbar-meta">Kelompok 15 · Serving Layer (6-Layer Lambda Architecture WS2) · Retailrocket (2.756.101 Events · 43.924 Cart Sessions)</span>
     </div>
     <div class="topbar-right">
       <span class="topbar-meta">Baseline CPU: i5-12450HX · 11.78 GB RAM</span>
@@ -513,9 +703,10 @@
 
   <!-- Navigation Tabs -->
   <nav class="nav-bar" role="tablist">
-    <button class="nav-tab active" onclick="switchTab('tab-arch', this)">1. Batch vs. Near Real-Time &amp; Live Stream</button>
-    <button class="nav-tab" onclick="switchTab('tab-model', this)">2. Model Performance &amp; Threshold Simulator</button>
-    <button class="nav-tab" onclick="switchTab('tab-eda', this)">3. Feature Drivers &amp; Temporal Behavior</button>
+    <button class="nav-tab active" onclick="switchTab('tab-arch', this)">1. Speed &amp; Batch: Latency &amp; Live Stream</button>
+    <button class="nav-tab" onclick="switchTab('tab-model', this)">2. Analytics: Model Performance &amp; Thresholds</button>
+    <button class="nav-tab" onclick="switchTab('tab-eda', this)">3. Analytics: Feature Drivers &amp; Temporal EDA</button>
+    <button class="nav-tab" onclick="switchTab('tab-ws2', this)">4. End-to-End Architecture (WS2)</button>
   </nav>
 
   <main class="workspace">
@@ -1121,6 +1312,292 @@
         </div>
       </div>
     </section>
+
+    <!-- TAB 4: END-TO-END E-COMMERCE ARCHITECTURE (WS2 BLUEPRINT VS. PROTOTYPE) -->
+    <section id="tab-ws2" class="view-panel">
+      <div class="panel" style="margin-bottom:20px;">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">End-to-End E-Commerce Data Architecture (Worksheet 2 — 6-Layer Lambda Architecture)</h2>
+            <p class="panel-subtitle">Visual alignment between the WS2 production blueprint (6 layers + cross-cutting ops) and implemented prototype components on Retailrocket</p>
+          </div>
+          <span class="badge badge-active">Focus Goal #3: Early Cart Abandonment</span>
+        </div>
+
+        <div class="arch-legend">
+          <span class="arch-legend-item"><span class="legend-swatch active"></span>Implemented / Simulated in Prototype (Retailrocket)</span>
+          <span class="arch-legend-item"><span class="legend-swatch blueprint"></span>Production Blueprint (WS2 Enterprise Scope)</span>
+          <span class="arch-legend-item" style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-muted);">Flow: Sources &rarr; Ingestion &rarr; Storage &rarr; Processing (Lambda) &rarr; Analytics &rarr; Serving</span>
+        </div>
+
+        <div class="arch-scroll">
+          <div class="arch-pipeline">
+            <!-- Layer 1: Data Sources -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Data Sources</span><span class="arch-col-step">L1</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Clickstream Web/Mobile</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc"><code>events.csv</code> (2.75M events: view, addtocart, transaction)</div>
+              </div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Product Catalog</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc"><code>item_properties</code> (20.27M rows) &amp; <code>category_tree</code></div>
+              </div>
+              <div class="arch-node node-blueprint">
+                <div class="arch-node-title"><span>OLTP Database</span><span class="arch-tag arch-tag-blueprint">Blueprint</span></div>
+                <div class="arch-node-desc">PostgreSQL / MySQL (orders, users, inventory)</div>
+              </div>
+              <div class="arch-node node-blueprint">
+                <div class="arch-node-title"><span>Payment &amp; Reviews</span><span class="arch-tag arch-tag-blueprint">Blueprint</span></div>
+                <div class="arch-node-desc">Payment Gateway API &amp; unstructured product reviews</div>
+              </div>
+            </div>
+
+            <!-- Layer 2: Ingestion -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Ingestion Layer</span><span class="arch-col-step">L2</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Apache Kafka</span><span class="arch-tag arch-tag-sim">Simulated</span></div>
+                <div class="arch-node-desc">Prototype: Atomic File Stream Producer (<code>os.replace</code>, 2s trigger)</div>
+              </div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Batch Loader</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc">Prototype: <code>kagglehub</code> + chunked CSV ingestion (Blueprint: Airflow)</div>
+              </div>
+              <div class="arch-node node-blueprint">
+                <div class="arch-node-title"><span>Debezium CDC</span><span class="arch-tag arch-tag-blueprint">Blueprint</span></div>
+                <div class="arch-node-desc">Change Data Capture from production OLTP database</div>
+              </div>
+            </div>
+
+            <!-- Layer 3: Storage -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Storage Layer</span><span class="arch-col-step">L3</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Data Lake (Raw)</span><span class="arch-tag arch-tag-sim">Local</span></div>
+                <div class="arch-node-desc">Blueprint: Amazon S3 / HDFS &middot; Prototype: Raw CSV staging (reprocessable)</div>
+              </div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Data Warehouse</span><span class="arch-tag arch-tag-sim">Local</span></div>
+                <div class="arch-node-desc">Blueprint: Snowflake/BigQuery &middot; Prototype: Curated <code>outputs/</code> (splits, JSON, <code>.joblib</code>)</div>
+              </div>
+              <div class="arch-node node-blueprint">
+                <div class="arch-node-title"><span>MongoDB NoSQL</span><span class="arch-tag arch-tag-blueprint">Blueprint</span></div>
+                <div class="arch-node-desc">Flexible JSON catalog &amp; product review document store</div>
+              </div>
+            </div>
+
+            <!-- Layer 4: Processing (Lambda) -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Processing (Lambda)</span><span class="arch-col-step">L4</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Batch Layer</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc">Apache Spark / PySpark <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split)</div>
+              </div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Speed Layer</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc">Spark Structured Streaming (<code>foreachBatch</code> 2s Colab; Python fallback on Windows)</div>
+              </div>
+            </div>
+
+            <!-- Layer 5: Analytics -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Analytics Layer</span><span class="arch-col-step">L5</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Machine Learning</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc">Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall</div>
+              </div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Spark SQL / Trino</span><span class="arch-tag arch-tag-sim">EDA</span></div>
+                <div class="arch-node-desc">Hourly/daily temporal risk profiling &amp; behavioral class means</div>
+              </div>
+            </div>
+
+            <!-- Layer 6: Visualization / Serving -->
+            <div class="arch-col">
+              <div class="arch-col-header"><span>Serving / Viz</span><span class="arch-col-step">L6</span></div>
+              <div class="arch-node node-active">
+                <div class="arch-node-title"><span>Streamlit App</span><span class="arch-tag arch-tag-active">Active</span></div>
+                <div class="arch-node-desc">Live dual-model stream, single-session predictor, &amp; CRM intervention telemetry (<code>dashboard.py</code> / <code>.html</code>)</div>
+              </div>
+              <div class="arch-node node-blueprint">
+                <div class="arch-node-title"><span>Power BI</span><span class="arch-tag arch-tag-blueprint">Blueprint</span></div>
+                <div class="arch-node-desc">Executive sales, revenue, &amp; inventory business reporting</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cross-Cutting Bar -->
+          <div class="arch-crosscut">
+            <div class="arch-crosscut-title">Cross-Cutting Layer &middot; Orchestration, Monitoring, &amp; Quality Assurance</div>
+            <div class="arch-crosscut-items">
+              <span class="crosscut-pill">Apache Airflow (DAG Orchestration &middot; Blueprint)</span>
+              <span class="crosscut-pill">Prometheus (Metrics &amp; Alerting &middot; Blueprint)</span>
+              <span class="crosscut-pill">Grafana (Observability Dashboards &middot; Blueprint)</span>
+              <span class="crosscut-pill pill-active">pytest + Streamlit AppTest (Automated Anti-Leakage &amp; E2E Verification &middot; Active)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Component Mapping Table -->
+      <div class="panel" style="margin-bottom:20px;">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">WS2 Production Blueprint vs. Prototype Implementation Matrix</h2>
+            <p class="panel-subtitle">Aligned with Tabel 2.2 in the Final Report — transparent distinction between live validated components and production design scope</p>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width:17%;">Architecture Layer</th>
+              <th style="width:33%;">WS2 Production Blueprint</th>
+              <th style="width:36%;">Prototype Realization (Kelompok 15)</th>
+              <th style="width:14%;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Data Sources</strong></td>
+              <td>Clickstream Web/Mobile, OLTP DB (PostgreSQL/MySQL), Payment Gateway API, Product Catalog API, Product Reviews</td>
+              <td>Retailrocket Kaggle (<code>events.csv</code> 2.75M, <code>item_properties</code> 20.27M, <code>category_tree</code> 1,669) via <code>kagglehub</code></td>
+              <td><span class="badge badge-active">Core Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>2. Ingestion Layer</strong></td>
+              <td>Apache Kafka (streaming events), Debezium (CDC), Apache Airflow (batch scheduling)</td>
+              <td>Chunked CSV batch loader + Atomic File Stream Producer (<code>os.replace</code>, 2s trigger) simulating Kafka</td>
+              <td><span class="badge badge-warn">Simulated</span></td>
+            </tr>
+            <tr>
+              <td><strong>3. Storage Layer</strong></td>
+              <td>Amazon S3 / HDFS (Data Lake Raw), MongoDB (NoSQL), Snowflake/BigQuery (Data Warehouse Curated)</td>
+              <td>Raw CSV staging (reprocessable Data Lake principle) + curated artifacts in <code>outputs/</code> (splits, JSON, <code>.joblib</code>)</td>
+              <td><span class="badge badge-warn">Local Staging</span></td>
+            </tr>
+            <tr>
+              <td><strong>4. Processing (Lambda)</strong></td>
+              <td>Batch Layer: Apache Spark &middot; Speed Layer: Spark Structured Streaming</td>
+              <td>PySpark <code>Window</code> (GAP 30m, 10 anti-leakage features, 80:20 split) &amp; Structured Streaming (<code>foreachBatch</code> 2s Colab / Python Windows fallback)</td>
+              <td><span class="badge badge-ok">Active Lambda</span></td>
+            </tr>
+            <tr>
+              <td><strong>5. Analytics Layer</strong></td>
+              <td>Spark SQL / Trino &amp; Machine Learning (fraud, recommendation, cart abandonment, segmentation)</td>
+              <td>Behavioral &amp; temporal EDA + Random Forest (PR-AUC 0.8574) vs. Logistic Regression (PR-AUC 0.8420) + Effective Recall simulation</td>
+              <td><span class="badge badge-ok">Active Focus #3</span></td>
+            </tr>
+            <tr>
+              <td><strong>6. Serving / Viz</strong></td>
+              <td>Streamlit (real-time operational dashboard) &amp; Power BI (executive business reports)</td>
+              <td>Streamlit live dual-model app (<code>dashboard.py</code>) &amp; standalone static dashboard (<code>dashboard.html</code>)</td>
+              <td><span class="badge badge-ok">Streamlit Live</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cross-Cutting Ops</strong></td>
+              <td>Apache Airflow (workflow), Prometheus (metrics &amp; alerting), Grafana (monitoring)</td>
+              <td>Automated unit &amp; E2E test suite (<code>pytest</code> + Streamlit <code>AppTest</code>) validating anti-leakage &amp; streaming pipeline</td>
+              <td><span class="badge badge-blueprint">Blueprint + QA</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Bottom Split: Variety/Volume & 5 Analytical Goals -->
+      <div class="split-grid-equal">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Data Variety &amp; Volume Justification (WS2 &sect;1.1&ndash;1.3)</h2>
+              <p class="panel-subtitle">Retailrocket serves as a representative sample validating a Big Data production blueprint</p>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Big Data Dimension</th>
+                <th>Prototype Sample (Retailrocket)</th>
+                <th>Production Scale Target (WS2)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Structured</strong></td>
+                <td>22,457 transactions (~165/day)</td>
+                <td>50,000&ndash;200,000 OLTP orders/day</td>
+              </tr>
+              <tr>
+                <td><strong>Semi-Structured</strong></td>
+                <td>2.75M events (~20k/day) + 20.27M item props</td>
+                <td>500,000&ndash;2,000,000 JSON events/day + catalog API</td>
+              </tr>
+              <tr>
+                <td><strong>Unstructured</strong></td>
+                <td>Not in Retailrocket CSV (Blueprint only)</td>
+                <td>Product reviews, customer text, &amp; catalog images</td>
+              </tr>
+              <tr>
+                <td><strong>Velocity &amp; Growth</strong></td>
+                <td>23.03M rows (4.5 mos) &middot; 1.27s mean stream latency</td>
+                <td>Tens&ndash;hundreds GB/month raw lake &middot; flash-sale spikes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">5 WS2 Analytical Goals &amp; Final Project Scope (WS2 &sect;1.4)</h2>
+              <p class="panel-subtitle">End-to-end architecture supports 5 business goals; Goal #3 is empirically validated here</p>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>WS2 Analytical Goal</th>
+                <th>Lambda Path</th>
+                <th>Implementation Scope</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="num">1</td>
+                <td>Real-Time Fraud Detection</td>
+                <td>Speed Layer</td>
+                <td><span class="badge badge-blueprint">Production Blueprint</span></td>
+              </tr>
+              <tr>
+                <td class="num">2</td>
+                <td>Personalized Product Recommendation</td>
+                <td>Hybrid (Batch + Speed)</td>
+                <td><span class="badge badge-blueprint">Production Blueprint</span></td>
+              </tr>
+              <tr class="selected-row">
+                <td class="num"><strong>3</strong></td>
+                <td><strong>User Behavior &amp; Early Cart Abandonment</strong></td>
+                <td><strong>Hybrid (Batch + Speed)</strong></td>
+                <td><span class="badge badge-ok">Validated Focus</span></td>
+              </tr>
+              <tr>
+                <td class="num">4</td>
+                <td>Sales &amp; Inventory Dashboard (Power BI)</td>
+                <td>Batch Layer (DW)</td>
+                <td><span class="badge badge-blueprint">Production Blueprint</span></td>
+              </tr>
+              <tr>
+                <td class="num">5</td>
+                <td>Customer Segmentation</td>
+                <td>Batch Layer (ML)</td>
+                <td><span class="badge badge-blueprint">Production Blueprint</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -1255,13 +1732,13 @@
       stepStreamBatch();
     }
 
-    // Support URL parameter ?tab=tab-arch | tab-model | tab-eda
+    // Support URL parameter ?tab=tab-arch | tab-model | tab-eda | tab-ws2
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
     if (tabParam) {
       const targetPanel = document.getElementById(tabParam);
       const navBtns = document.querySelectorAll('.nav-tab');
-      const tabIndexMap = { 'tab-arch': 0, 'tab-model': 1, 'tab-eda': 2 };
+      const tabIndexMap = { 'tab-arch': 0, 'tab-model': 1, 'tab-eda': 2, 'tab-ws2': 3 };
       if (targetPanel && tabParam in tabIndexMap) {
         switchTab(tabParam, navBtns[tabIndexMap[tabParam]]);
       }
